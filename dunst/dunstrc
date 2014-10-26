@@ -1,0 +1,50 @@
+[global]
+    font = Sans 10
+    
+    allow_markup = yes
+    format = "<b>%s</b>\n%b"
+    sort = yes
+    indicate_hidden = yes
+    alignment = left
+    bounce_freq = 0
+    show_age_threshold = 60;
+
+    word_wrap = yes
+
+    geometry = "0x0-40+40"
+    transparency = 10
+
+    idle_threshold = 20
+
+    monitor = 0
+    follow = none
+
+    sticky_history = yes
+    line_height = 0
+
+    separator_height = 2;
+
+    separator_color = auto
+
+    padding = 12
+    horizontal_padding = 13
+
+    icon_position = left
+    icon_folders = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
+
+    dmenu = /usr/bin/dmenu -p dunst:
+
+[urgency_low]
+    background = "#000000"
+    foreground = "#929593"
+    timeout = 10
+
+[urgency_normal]
+    background = "#000000"
+    foreground = "#ecebec"
+    timeout = 10
+
+[urgency_critical]
+    background = "#912226"
+    foreground = "#ecebec"
+    timeout = 0

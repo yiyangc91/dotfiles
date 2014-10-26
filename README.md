@@ -1,4 +1,5 @@
-dotfiles
+Yiyang Chen's Config Repo
 ========
 
-Poorly made dotfiles
+Poorly made configuration for various things.
+
