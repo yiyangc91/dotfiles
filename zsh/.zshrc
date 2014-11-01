@@ -23,6 +23,12 @@ setopt correct # like the arch setup terminal
 
 unsetopt flow_control # annoying
 
+# This is not in zshenv because these are specific to interactive shells
+if [[ -f "$HOME/.dir_colors" ]]; then
+   eval $(dircolors "$HOME/.dir_colors")
+fi
+export GREP_OPTIONS="--color=auto"
+
 # ZLE configuration
 bindkey -v
 
@@ -69,7 +75,7 @@ autoload -Uz compinit
 compinit -d ~/.zsh/zcompdump
 
 zstyle ':completion:*' menu select # like vim's wildmenu
-zstyle ':completion:*' list-colors '' # avoid setting ZLS_COLORS for complist
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' rehash yes # zsh can't find new programs
 zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
 zstyle ':completion::complete:*' use-cache yes

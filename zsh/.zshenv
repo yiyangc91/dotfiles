@@ -6,4 +6,3 @@ export PAGER=less
 [[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
 export PATH
 
-export GREP_OPTIONS="--color=auto"
