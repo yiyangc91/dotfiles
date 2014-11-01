@@ -1,16 +1,31 @@
-HISTFILE=~/.histfile
+# Some basic checking
+[[ -d "$HOME/.zsh/cache" ]] || echo 'Warning: Cache directory is missing' >&2
+[[ -d "$HOME/.zsh" ]] || echo 'Warning: ZSH directory is missing' >&2
+
+
+HISTFILE="$HOME/.zsh/histfile"
 HISTSIZE=16384
 SAVEHIST=16384
+DIRSTACKSIZE=20
 
-setopt autocd
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt extended_history
-setopt hist_verify
-setopt prompt_subst
+setopt auto_cd # cd just by using dirname
+setopt auto_pushd # auto pushd, it's like browser history.
+setopt pushd_ignore_dups # ignore dups in pushd
+setopt pushd_silent # stfu
 
-unsetopt flow_control
+setopt hist_ignore_dups # ignore dups in history so we dont end up scrolling for years
+setopt hist_verify # !command verification, ensures no accidents
+setopt share_history # amazing. "implies" append_history and extended_history
+
+setopt prompt_subst # allows prompt to work
+
+setopt complete_aliases # autocomplete for aliases too
+setopt complete_in_word # does not move the cursor if completion is started...
+setopt always_to_end # ... but moves it if the completion ends
+
+setopt correct # like the arch setup terminal
+
+unsetopt flow_control # annoying
 
 # ZLE configuration
 bindkey -v
@@ -48,17 +63,21 @@ zle -N zle-keymap-select
 
 bindkey -M viins "^R" history-incremental-search-backward
 
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
 # Completion Configuration
 zmodload -i zsh/complist
 
 autoload -Uz compinit
-compinit -D
+compinit -d ~/.zsh/zcompdump
 
 zstyle ':completion:*' menu select # like vim's wildmenu
 zstyle ':completion:*' list-colors '' # avoid setting ZLS_COLORS for complist
 zstyle ':completion:*' rehash yes # zsh can't find new programs
 zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
-zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' use-cache yes
+zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' auto-description 'specify: %d'
