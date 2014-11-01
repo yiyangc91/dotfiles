@@ -32,6 +32,7 @@ set nrformats-=octal
 set completeopt=menuone,longest
 
 set mouse=a
+set backspace=2
 
 set autoread
 

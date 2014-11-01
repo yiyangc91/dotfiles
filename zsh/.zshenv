@@ -1,6 +1,9 @@
 export EDITOR=vim
 export PAGER=less
 
-export PATH="$PATH:$HOME/bin"
+[[ -d "$HOME/.cabal/bin" ]] && PATH="$PATH:$HOME/.cabal/bin"
+[[ -d "$HOME/.rvm/bin" ]] && PATH="$PATH:$HOME/.rvm/bin"
+[[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
+export PATH
 
 export GREP_OPTIONS="--color=auto"

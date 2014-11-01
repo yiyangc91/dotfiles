@@ -19,10 +19,6 @@ setopt share_history # amazing. "implies" append_history and extended_history
 
 setopt prompt_subst # allows prompt to work
 
-setopt complete_aliases # autocomplete for aliases too
-setopt complete_in_word # does not move the cursor if completion is started...
-setopt always_to_end # ... but moves it if the completion ends
-
 setopt correct # like the arch setup terminal
 
 unsetopt flow_control # annoying
@@ -49,8 +45,8 @@ function zle-line-init zle-keymap-select {
       indicator="%(?.%F{green}.%F{red})%(!.#.%%)%f"
    fi
 
-   if [[ "$VIRTUAL_ENV" ]]; then
-      virtualenv="[%F{yellow}$(basename $VIRTUAL_ENV)%f]"
+   if [[ -n "$VIRTUAL_ENV" ]]; then
+      virtualenv="[%F{yellow}virtualenv/%f%F{cyan}$(basename $VIRTUAL_ENV)%f]"
    fi
 
    PS1="%B%F{black}%*%f%b %F{blue}%(4~:.../:)%3~%f${indicator} "
@@ -101,4 +97,11 @@ alias lla='ls -lAh'
 # Applications and stuff
 if type virtualenvwrapper.sh &> /dev/null; then
    . virtualenvwrapper.sh
+fi
+
+[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Pick up local zsh stuff, things we want separated per computer
+if [[ -f "$HOME/.zshlocal" ]]; then
+   . "$HOME/.zshlocal"
 fi
