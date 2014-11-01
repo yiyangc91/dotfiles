@@ -7,10 +7,9 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt extended_history
+setopt hist_verify
 setopt prompt_subst
 
-unsetopt hash_cmds
-unsetopt hash_dirs
 unsetopt flow_control
 
 # ZLE configuration
@@ -55,8 +54,14 @@ zmodload -i zsh/complist
 autoload -Uz compinit
 compinit -D
 
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' menu select # like vim's wildmenu
+zstyle ':completion:*' list-colors '' # avoid setting ZLS_COLORS for complist
+zstyle ':completion:*' rehash yes # zsh can't find new programs
+zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
+zstyle ':completion::complete:*' use-cache 1
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' auto-description 'specify: %d'
 
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history

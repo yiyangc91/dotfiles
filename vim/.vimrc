@@ -28,9 +28,12 @@ set wildmenu
 
 set display+=lastline
 
+set nrformats-=octal
 set completeopt=menuone,longest
 
 set mouse=a
+
+set autoread
 
 " Color, Appearance and Syntax
 set background=dark
