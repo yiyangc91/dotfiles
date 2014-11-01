@@ -34,7 +34,7 @@ set mouse=a
 
 " Color, Appearance and Syntax
 set background=dark
-colorscheme solarized
+colorscheme base16-default
 
 syntax on
 set number
@@ -43,9 +43,9 @@ set number
 set hlsearch
 set incsearch
 
-" Keybinds
-if maparg('<C-L>', 'n') ==# ''
-   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
+" Command Mode Keybindings
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
-imap jj <Esc>
+" Insert Mode Keybindings
+inoremap <C-u> <C-g>u<C-u>
+
