@@ -2,6 +2,15 @@
 
 execute pathogen#infect()
 set nocompatible
+filetype off
+
+call vundle#begin()
+Plugin 'bling/vim-airline'
+Plugin 'chriskempson/base16-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+call vundle#end()
 
 " Default Tabbing
 filetype plugin indent on
