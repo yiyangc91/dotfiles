@@ -1,7 +1,12 @@
+# Basic reminder to myself about wtf I did
+# You should create the folders listed below.
+# Also you should copy the dir_colors
+# If you're still writing python, pick up virtualenvwrapper
+# If you're still writing ruby, pick up rvm
+#
 # Some basic checking
 [[ -d "$HOME/.zsh/cache" ]] || echo 'Warning: Cache directory is missing' >&2
 [[ -d "$HOME/.zsh" ]] || echo 'Warning: ZSH directory is missing' >&2
-
 
 HISTFILE="$HOME/.zsh/histfile"
 HISTSIZE=16384
@@ -24,10 +29,22 @@ setopt correct # like the arch setup terminal
 unsetopt flow_control # annoying
 
 # This is not in zshenv because these are specific to interactive shells
-if [[ -f "$HOME/.dir_colors" ]]; then
-   eval $(dircolors "$HOME/.dir_colors")
+# OSX and BSD can go die in a fire
+export LSCOLORS='exfxcxdxbxbfafBxGxabad'
+if ls --color=auto &> /dev/null; then
+   if type dircolors &> /dev/null && [[ -f "$HOME/.dir_colors" ]]; then
+      eval $(dircolors "$HOME/.dir_colors")
+   else
+      echo 'Warning: Using GNU coreutils but cannot do colors properly' >&2
+      export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:do=03;32:or=41;35:ca=5;47;1;32:st=1;42;32:mh=01:'
+   fi
 fi
 export GREP_OPTIONS="--color=auto"
+
+# We're probably on OSX/BSD
+if [[ -z "$LS_COLORS" ]]; then
+   export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:'
+fi
 
 # ZLE configuration
 bindkey -v

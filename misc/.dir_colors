@@ -62,35 +62,39 @@ TERM xterm-256color
 TERM xterm-88color
 TERM xterm-color
 TERM xterm-debian
-# Below are the color init strings for the basic file types. A color init
-# string consists of one or more of the following numeric codes:
-# Attribute codes:
-# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
-# Text color codes:
-# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-# Background color codes:
-# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-#NORMAL 00 # no color code at all
-#FILE 00 # regular file: use no color at all
-RESET 0 # reset to "normal" color
-DIR 00;34 # directory
-LINK 00;36 # symbolic link. (If you set this to 'target' instead of a
- # numerical value, the color is as for the file pointed to.)
-MULTIHARDLINK 00 # regular file with more than one link
-FIFO 40;33 # pipe
-SOCK 01;35 # socket
-DOOR 01;35 # door
-BLK 40;33;01 # block device driver
-CHR 40;33;01 # character device driver
-ORPHAN 40;31;01 # symlink to nonexistent file, or non-stat'able file
-SETUID 37;41 # file that is setuid (u+s)
-SETGID 30;43 # file that is setgid (g+s)
-CAPABILITY 30;41 # file with capability
-STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
-STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
-# This is for files with execute permission:
-EXEC 00;32
+
+RESET 0
+
+# These colors are supported by all variants of LS
+
+# Everyday files
+DIR 00;34
+LINK 00;35
+SOCK 00;32
+FIFO 00;33
+EXEC 00;31
+
+# Special Files
+BLK 45;31
+CHR 45;30
+
+# Files with setuid/setgid
+SETUID 01;31
+SETGID 01;36
+
+# More directory stuff
+STICKY_OTHER_WRITABLE 42;30
+OTHER_WRITABLE 44;30
+
+# These colors are not defined by BSD LSCOLORS
+# Some of these are uh, just not compatible
+DOOR 03;32
+ORPHAN 41;35
+CAPABILITY 5;47;1;32
+STICKY 1;42;32 
+MULTIHARDLINK 01
+
+# fix these later
 # List any file extensions like '.gz' or '.tar' that you would like ls
 # to colorize below. Put the extension, a space, and the color init string.
 # (and any comments you want to add after a '#')
