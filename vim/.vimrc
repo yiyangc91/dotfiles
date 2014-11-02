@@ -5,6 +5,8 @@ set nocompatible
 filetype off
 
 call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'kien/ctrlp.vim'
