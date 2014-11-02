@@ -30,7 +30,7 @@ unsetopt flow_control # annoying
 
 # This is not in zshenv because these are specific to interactive shells
 # OSX and BSD can go die in a fire
-export LSCOLORS='exfxcxdxbxbfafBxGxabad'
+export LSCOLORS='exfxcxdxbxbfafBxGxacae'
 if ls --color=auto &> /dev/null; then
    if type dircolors &> /dev/null && [[ -f "$HOME/.dir_colors" ]]; then
       eval $(dircolors "$HOME/.dir_colors")
