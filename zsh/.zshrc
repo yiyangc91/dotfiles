@@ -64,16 +64,21 @@ zstyle ':vcs_info:*' stagedstr '%F{green}•%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}•%f'
 
 function preexec() {
-   typeset -gi CALCTIME=1
+   typeset -g CALCTIME=$2
    typeset -gi CMDSTARTTIME=SECONDS
 }
 
 function precmd () {
    vcs_info
-   if (( CALCTIME )) ; then
+   if [[ -n $CALCTIME ]]; then
       typeset -gi ETIME=SECONDS-CMDSTARTTIME
+      if [[ ${#CALCTIME} -gt 10 ]]; then
+         typeset -g ENAME=${CALCTIME:0:8}..
+      else
+         typeset -g ENAME=$CALCTIME
+      fi
    fi
-   typeset -gi CALCTIME=0
+   typeset -g CALCTIME=''
 }
 
 function _construct_right_prompt {
@@ -90,7 +95,7 @@ function _construct_right_prompt {
       if [[ $ETIME -ne 1 ]]; then
          secondStr+='s'
       fi
-      executionTime="[%F{yellow}$ETIME%f %F{magenta}${secondStr}%f]"
+      executionTime="[%F{yellow}${ENAME}%f:%F{cyan}$ETIME%f %F{magenta}${secondStr}%f]"
    fi
 
    echo "${executionTime}${vcs_info_msg_0_}${virtualenv}"

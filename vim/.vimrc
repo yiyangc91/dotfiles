@@ -96,6 +96,7 @@ nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 noremap <silent> <leader>j :cn<CR>
 noremap <silent> <leader>k :cp<CR>
+noremap <silent> <leader>l :clist<CR>
 
 nnoremap <silent> <leader>s :setlocal list!<CR>
 
