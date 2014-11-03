@@ -58,7 +58,7 @@ zstyle ':vcs_info:*' stagedstr '%F{green}•%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}•%f'
 precmd () { vcs_info }
 
-function zle-line-init zle-keymap-select {
+function customize-prompt {
    local indicator
    local virtualenv=''
 
@@ -74,7 +74,15 @@ function zle-line-init zle-keymap-select {
 
    PS1="%B%F{black}%*%f%b %F{blue}%(4~:.../:)%3~%f${indicator} "
    RPS1="${vcs_info_msg_0_}${virtualenv}"
+}
+customize-prompt
 
+function zle-line-init {
+   
+}
+
+function zle-keymap-select {
+   customize-prompt
    zle reset-prompt
 }
 zle -N zle-line-init
@@ -123,6 +131,11 @@ if type virtualenvwrapper.sh &> /dev/null; then
 fi
 
 [[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+ADOTDIR="$HOME/.zsh/antigen"
+. "$HOME/.zsh/antigen.zsh"
+antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
+antigen apply
 
 # Pick up local zsh stuff, things we want separated per computer
 if [[ -f "$HOME/.zshlocal" ]]; then
