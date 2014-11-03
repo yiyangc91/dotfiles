@@ -14,6 +14,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 call vundle#end()
 
+" Plugin Configuration
+let g:airline#extensions#tabline#enabled = 1
+
 " Default Tabbing
 filetype plugin indent on
 
