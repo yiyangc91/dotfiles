@@ -10,7 +10,7 @@ filetype off
 "   you'll then forget how to use vanilla Vim, which will kill you on other
 "   people's machines and servers.
 " - CtrlP is justified because it is too awesome
-" - NERDTree is really pushing it, you've already forgotten buffers
+" - NERDTree and Bufexplorer are really pushing it..
 " - Gotta remember to install change surroundings, because that's also awesome
 " - Everything else is informational/explicit:
 "   - Airline is just great, and prevents stupid amounts of StatusLine
@@ -18,6 +18,7 @@ filetype off
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'kien/ctrlp.vim'
