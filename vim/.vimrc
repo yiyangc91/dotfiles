@@ -97,10 +97,11 @@ nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 noremap <silent> <leader>n :cn<CR>
 noremap <silent> <leader>p :cp<CR>
 
-nnoremap <silent> <leader>bp :bp<CR>
-nnoremap <silent> <leader>bn :bn<CR>
-nnoremap <silent> <leader>bd :bd<CR>
-nnoremap <silent> <leader>bl :ls<CR>
+" Note BufExplorer defines be, bs and bv
+nnoremap <silent> <leader>b :bp<CR>
+nnoremap <silent> <leader>f :bn<CR>
+nnoremap <silent> <leader>d :bd<CR>
+nnoremap <silent> <leader>l :ls<CR>
 
 nnoremap <silent> <leader>s :setlocal list!<CR>
 
