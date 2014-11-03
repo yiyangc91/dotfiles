@@ -23,6 +23,9 @@ setopt prompt_subst # allows prompt to work
 
 setopt correct # like the arch setup terminal
 
+setopt complete_in_word # put cursor in middle of word, press tab to fix word.
+setopt always_to_end # move cursor to the end afterwards
+
 unsetopt flow_control # annoying
 
 # This is not in zshenv because these are specific to interactive shells
@@ -118,7 +121,6 @@ PS1='$(_construct_left_prompt)'
 RPS1='$(_construct_right_prompt)'
 
 function zle-line-init {
-
 }
 
 function zle-keymap-select {
@@ -154,6 +156,18 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+# Applications and stuff
+if type virtualenvwrapper.sh &> /dev/null; then
+   . virtualenvwrapper.sh
+fi
+
+[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+ADOTDIR="$HOME/.zsh/antigen"
+. "$HOME/.zsh/antigen.zsh"
+antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
+antigen apply
+
 #
 # Aliases
 #
@@ -180,18 +194,6 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 alias d='dirs -v | head -10'
-
-# Applications and stuff
-if type virtualenvwrapper.sh &> /dev/null; then
-   . virtualenvwrapper.sh
-fi
-
-[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-ADOTDIR="$HOME/.zsh/antigen"
-. "$HOME/.zsh/antigen.zsh"
-antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
-antigen apply
 
 # Pick up local zsh stuff, things we want separated per computer
 if [[ -e "$HOME/.zshlocal" ]]; then
