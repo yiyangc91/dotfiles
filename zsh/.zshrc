@@ -70,12 +70,15 @@ function preexec() {
 
 function precmd () {
    vcs_info
+
+   typeset -g ENAME=''
+   typeset -gi ETIME=0
    if [[ -n $CALCTIME ]]; then
-      typeset -gi ETIME=SECONDS-CMDSTARTTIME
+      ETIME=SECONDS-CMDSTARTTIME
       if [[ ${#CALCTIME} -gt 10 ]]; then
-         typeset -g ENAME=${CALCTIME:0:8}..
+         ENAME=${CALCTIME:0:8}..
       else
-         typeset -g ENAME=$CALCTIME
+         ENAME=$CALCTIME
       fi
    fi
    typeset -g CALCTIME=''
