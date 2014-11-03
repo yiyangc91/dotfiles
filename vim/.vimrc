@@ -4,6 +4,17 @@ execute pathogen#infect()
 set nocompatible
 filetype off
 
+" Vundle!
+" Note to myself:
+" - Try to avoid plugins that add Vim functionality and keybinds, because
+"   you'll then forget how to use vanilla Vim, which will kill you on other
+"   people's machines and servers.
+" - CtrlP is justified because it is too awesome
+" - NERDTree is really pushing it, you've already forgotten buffers
+" - Gotta remember to install change surroundings, because that's also awesome
+" - Everything else is informational/explicit:
+"   - Airline is just great, and prevents stupid amounts of StatusLine
+"   - Syntastic is godly useful
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
@@ -15,7 +26,7 @@ Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 " Plugin Configuration
-let g:airline#extensions#tabline#enabled = 1
+" Nothing here.
 
 " Default Tabbing
 filetype plugin indent on
@@ -38,7 +49,7 @@ set scrolloff=3
 
 set colorcolumn=80
 
-set listchars=tab:▸\ ,eol:¬,trail:x
+set listchars=tab:▸\ ,eol:¬,trail:⋅,nbsp:⋅
 
 " Input Configuration
 set ttimeout
@@ -80,12 +91,19 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-noremap <leader>n :cn<CR>
-noremap <leader>p :cp<CR>
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
-nnoremap <silent> <leader>l :setlocal list!<CR>
+noremap <silent> <leader>n :cn<CR>
+noremap <silent> <leader>p :cp<CR>
 
-nnoremap <leader>w :w<CR>
+nnoremap <silent> <leader>b :bp<CR>
+nnoremap <silent> <leader>f :bn<CR>
+nnoremap <silent> <leader>d :bd<CR>
+nnoremap <silent> <leader>l :ls<CR>
+
+nnoremap <silent> <leader>s :setlocal list!<CR>
+
+nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
 inoremap <C-u> <C-g>u<C-u>
