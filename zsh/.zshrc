@@ -28,6 +28,12 @@ setopt always_to_end # move cursor to the end afterwards
 
 unsetopt flow_control # annoying
 
+if [[ -d "/usr/local/share/zsh-completions" ]]; then
+   # Arch and stuff installs this in site-functions, which is cool,
+   # but OSX requires manually adding this to the fpath
+   fpath=("/usr/local/share/zsh-completions" $fpath)
+fi
+
 # This is not in zshenv because these are specific to interactive shells
 # OSX and BSD can go die in a fire
 export LSCOLORS='exfxcxdxbxbfafBxGxacae'
@@ -45,6 +51,42 @@ export GREP_OPTIONS="--color=auto"
 if [[ -z "$LS_COLORS" ]]; then
    export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:'
 fi
+
+
+# Completion Configuration
+zmodload -i zsh/complist
+
+autoload -Uz compinit
+compinit -d ~/.zsh/zcompdump
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' rehash yes # zsh can't find new programs
+zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
+zstyle ':completion::complete:*' use-cache yes
+zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' auto-description 'specify: %d'
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# Applications and stuff
+if type virtualenvwrapper.sh &> /dev/null; then
+   export VIRTUAL_ENV_DISABLE_PROMPT=1
+   . virtualenvwrapper.sh
+fi
+
+[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+ADOTDIR="$HOME/.zsh/antigen"
+. "$HOME/.zsh/antigen.zsh"
+antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
+antigen bundle "git@github.com:zsh-users/zsh-history-substring-search.git"
+antigen apply
 
 #
 # ZLE configuration
@@ -67,24 +109,10 @@ zstyle ':vcs_info:*' stagedstr '%F{green}•%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}•%f'
 
 function preexec() {
-   typeset -g CALCTIME=$2
-   typeset -gi CMDSTARTTIME=SECONDS
 }
 
 function precmd () {
    vcs_info
-
-   typeset -g ENAME=''
-   typeset -gi ETIME=0
-   if [[ -n $CALCTIME ]]; then
-      ETIME=SECONDS-CMDSTARTTIME
-      if [[ ${#CALCTIME} -gt 10 ]]; then
-         ENAME=${CALCTIME:0:8}..
-      else
-         ENAME=$CALCTIME
-      fi
-   fi
-   typeset -g CALCTIME=''
 }
 
 function _construct_right_prompt {
@@ -95,16 +123,7 @@ function _construct_right_prompt {
       virtualenv="[%F{yellow}venv/%f%F{cyan}$(basename $VIRTUAL_ENV)%f]"
    fi
 
-   local executionTime=''
-   if [[ $ETIME -gt 0 ]]; then
-      local secondStr='sec'
-      if [[ $ETIME -ne 1 ]]; then
-         secondStr+='s'
-      fi
-      executionTime="[%F{yellow}${ENAME}%f:%F{cyan}$ETIME%f %F{magenta}${secondStr}%f]"
-   fi
-
-   echo "${executionTime}${vcs_info_msg_0_}${virtualenv}"
+   echo "${vcs_info_msg_0_}${virtualenv}"
 }
 
 function _construct_left_prompt {
@@ -130,43 +149,15 @@ function zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+zmodload zsh/terminfo
 bindkey -M viins "^R" history-incremental-search-backward
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
-
-# Completion Configuration
-zmodload -i zsh/complist
-
-autoload -Uz compinit
-compinit -d ~/.zsh/zcompdump
-
-zstyle ':completion:*' menu select # like vim's wildmenu
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' rehash yes # zsh can't find new programs
-zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
-zstyle ':completion::complete:*' use-cache yes
-zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
-
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' auto-description 'specify: %d'
-
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
-# Applications and stuff
-if type virtualenvwrapper.sh &> /dev/null; then
-   . virtualenvwrapper.sh
-fi
-
-[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-ADOTDIR="$HOME/.zsh/antigen"
-. "$HOME/.zsh/antigen.zsh"
-antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
-antigen apply
 
 #
 # Aliases
