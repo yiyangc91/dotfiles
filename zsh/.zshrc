@@ -17,7 +17,7 @@ setopt pushd_minus # - easier to type than +
 
 setopt hist_ignore_dups # ignore dups in history so we dont end up scrolling for years
 setopt hist_verify # !command verification, ensures no accidents
-setopt share_history # amazing. "implies" append_history and extended_history
+# setopt share_history
 
 setopt prompt_subst # allows prompt to work
 
@@ -99,6 +99,7 @@ antigen apply
 #  - yellow/cyan used in RPS1 as label+value. magenta for secondary label.
 #    red and green also used in place of magenta as appropriate.
 bindkey -v
+export KEYTIMEOUT=1
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%F{yellow}%s%f/%F{cyan}%b%f%c%u]'
@@ -153,6 +154,8 @@ zmodload zsh/terminfo
 bindkey -M viins "^R" history-incremental-search-backward
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+bindkey -sM vicmd '^[' '^G'
+bindkey -rM viins '^X'
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
