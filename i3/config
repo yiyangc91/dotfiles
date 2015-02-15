@@ -154,6 +154,6 @@ client.unfocused        $grey01 $grey01 $grey03 $grey02
 client.urgent           $brown  $red    $grey07 $brown
 
 # Per application settings
-assign [class="^Google-chrome"] 1
+assign [class="^Firefox$"] 1
 
-for_window [class="^Google-chrome"] border none, layout stacking
+for_window [class="^Firefox$"] border none, layout stacking
