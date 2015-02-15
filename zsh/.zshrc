@@ -174,6 +174,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+bindkey -M viins "^A" _next_tags
 bindkey -M viins "^R" history-incremental-search-backward
 
 bindkey -M vicmd 'k' history-substring-search-up
