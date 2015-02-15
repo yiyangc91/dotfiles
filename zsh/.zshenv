@@ -11,8 +11,19 @@ export PAGER=less
 
 export PATH
 
+### HACKS ###
+
+# Fucking Debian Bullshit
+skip_global_compinit=1
+
 # OSX fun + fix the java version
 # Unfuck me later
 if [[ $(uname -s) == 'Darwin' ]]; then
    export JAVA_HOME=$(/usr/libexec/java_home)
 fi
+
+# Pick up local zsh stuff, things we want separated per computer
+if [[ -e "$HOME/.zshlocalenv" ]]; then
+   . "$HOME/.zshlocalenv"
+fi
+

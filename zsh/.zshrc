@@ -45,7 +45,6 @@ if ls --color=auto &> /dev/null; then
       export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:do=03;32:or=41;35:ca=5;47;1;32:st=1;42;32:mh=01:'
    fi
 fi
-export GREP_OPTIONS="--color=auto"
 
 # We're probably on OSX/BSD
 if [[ -z "$LS_COLORS" ]]; then
@@ -166,11 +165,12 @@ zle -N self-insert url-quote-magic
 # Aliases
 #
 
-# ls aliases
 if [[ $(uname -s) == 'Darwin' ]]; then
    alias ls='ls -G'
+   export GREP_OPTIONS="--color=always"
 else
    alias ls='ls --color'
+   alias grep='grep --color=auto'
 fi
 alias l='ls -h'
 alias la='ls -Ah'
@@ -190,6 +190,6 @@ alias 9='cd -9'
 alias d='dirs -v | head -10'
 
 # Pick up local zsh stuff, things we want separated per computer
-if [[ -e "$HOME/.zshlocal" ]]; then
-   . "$HOME/.zshlocal"
+if [[ -e "$HOME/.zshlocalrc" ]]; then
+   . "$HOME/.zshlocalrc"
 fi
