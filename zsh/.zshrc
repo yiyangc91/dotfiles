@@ -87,14 +87,14 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
         usbmux uucp vcsa wwwrun xfs '_*'
 
-# SCP/SSH/rsync completion improvements - usually there is way too much info!
-zstyle ':completion:*:*:(scp|rsync):*' tag-order files 'users hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ addr'
+# SCP/SSH completion improvements - usually there is way too much info!
+zstyle ':completion:*:*:scp:*' tag-order files 'users hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ addr'
 zstyle ':completion:*:*:ssh:*' tag-order 'users hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ addr'
-zstyle ':completion:*:*:(scp|ssh|rsync):*' group-order files users hosts-host hosts-domain hosts-ipaddr
+zstyle ':completion:*:*:(scp|ssh):*' group-order files users hosts-host hosts-domain hosts-ipaddr
 
-zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-host' ignored-patterns '*.*' loopback localhost
-zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^*.*' '*@*'
-zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
+zstyle ':completion:*:*:(scp|ssh):*:hosts-host' ignored-patterns '*.*' loopback localhost
+zstyle ':completion:*:*:(scp|ssh):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:*:(scp|ssh):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
 # Applications and stuff
 if type virtualenvwrapper.sh &> /dev/null; then
