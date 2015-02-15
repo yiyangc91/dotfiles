@@ -17,7 +17,7 @@ setopt pushd_minus # - easier to type than +
 
 setopt hist_ignore_dups # ignore dups in history so we dont end up scrolling for years
 setopt hist_verify # !command verification, ensures no accidents
-# setopt share_history
+setopt share_history # shares history (reads immedaitely, writes immediately)
 
 setopt prompt_subst # allows prompt to work
 
@@ -25,6 +25,8 @@ setopt correct # like the arch setup terminal
 
 setopt complete_in_word # put cursor in middle of word, press tab to fix word.
 setopt always_to_end # move cursor to the end afterwards
+
+setopt glob_complete # tabbing a * opens menu instead of inserting everything
 
 unsetopt flow_control # annoying
 
@@ -58,20 +60,41 @@ zmodload -i zsh/complist
 autoload -Uz compinit
 compinit -d ~/.zsh/zcompdump
 
+# Completion Quick Reference
+# :completion:<function>:<completer>:<command>:<argument>:<tag>
+#
+# :completion:* will set that option for all tags
+
 zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' rehash yes # zsh can't find new programs
-zstyle ':completion:*' list-prompt '%S%M matches%s' # page matches
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-prompt '%S%M matches%s' # page matches
 zstyle ':completion::complete:*' use-cache yes
-zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
+zstyle ':completion::complete:*' cache-path "$HOME/.zsh/cache"
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{white}%B%d%b%f'
 
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+# Stolen from oh-my-zsh - ignore uninteresting users
+zstyle ':completion:*:*:*:users' ignored-patterns \
+        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+        usbmux uucp vcsa wwwrun xfs '_*'
+
+# SCP/SSH/rsync completion improvements - usually there is way too much info!
+zstyle ':completion:*:*:(scp|rsync):*' tag-order files 'users hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ addr'
+zstyle ':completion:*:*:ssh:*' tag-order 'users hosts:-host hosts:-domain:domain hosts:-ipaddr:ip\ addr'
+zstyle ':completion:*:*:(scp|ssh|rsync):*' group-order files users hosts-host hosts-domain hosts-ipaddr
+
+zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-host' ignored-patterns '*.*' loopback localhost
+zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:*:(scp|ssh|rsync):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
 # Applications and stuff
 if type virtualenvwrapper.sh &> /dev/null; then
@@ -149,12 +172,22 @@ function zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-zmodload zsh/terminfo
+zmodload zsh/terminfo # Gives us $terminfo
+
+# Keybindings
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
 bindkey -M viins "^R" history-incremental-search-backward
+
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-bindkey -sM vicmd '^[' '^G'
-bindkey -rM viins '^X'
+
+bindkey -sM vicmd '^[' '^G' # Rebind ESC to Bell in cmd mode
+bindkey -rM viins '^X' # Unbind self-insert to allow the other ^X binds to work
+
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
