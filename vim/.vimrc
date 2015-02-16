@@ -5,20 +5,9 @@ set nocompatible
 filetype off
 
 " Vundle!
-" Note to myself:
-" - Try to avoid plugins that add Vim functionality and keybinds, because
-"   you'll then forget how to use vanilla Vim, which will kill you on other
-"   people's machines and servers.
-" - CtrlP is justified because it is too awesome
-" - NERDTree and Bufexplorer are really pushing it..
-" - Gotta remember to install change surroundings, because that's also awesome
-" - Everything else is informational/explicit:
-"   - Airline is just great, and prevents stupid amounts of StatusLine
-"   - Syntastic is godly useful
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'kien/ctrlp.vim'
@@ -79,6 +68,7 @@ colorscheme base16-default
 
 syntax on
 set number
+set relativenumber
 
 " Searching
 set hlsearch
@@ -104,6 +94,11 @@ nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
 inoremap <C-u> <C-g>u<C-u>
+
+nnoremap <silent> <leader>n :set relativenumber!<CR>
+
+nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <leader>v :CtrlPMRU<CR>
 
 " Filetype specific commands
 autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
