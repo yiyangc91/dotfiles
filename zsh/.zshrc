@@ -9,6 +9,8 @@ HISTSIZE=16384
 SAVEHIST=16384
 DIRSTACKSIZE=20
 
+COMPDUMPFILE="$HOME/.zsh/zcompdump"
+
 setopt auto_cd # cd just by using dirname
 setopt auto_pushd # auto pushd, it's like browser history.
 setopt pushd_ignore_dups # ignore dups in pushd
@@ -58,7 +60,7 @@ fi
 zmodload -i zsh/complist
 
 autoload -Uz compinit
-compinit -d ~/.zsh/zcompdump
+compinit -d "$COMPDUMPFILE"
 
 # Completion Quick Reference
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
@@ -100,8 +102,8 @@ fi
 
 ADOTDIR="$HOME/.zsh/antigen"
 . "$HOME/.zsh/antigen.zsh"
-antigen bundle "git@github.com:zsh-users/zsh-syntax-highlighting.git"
-antigen bundle "git@github.com:zsh-users/zsh-history-substring-search.git"
+antigen bundle "https://github.com/zsh-users/zsh-syntax-highlighting"
+antigen bundle "https://github.com/zsh-users/zsh-history-substring-search"
 antigen apply
 
 # ZSH highlighter coloring
