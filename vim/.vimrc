@@ -89,8 +89,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap <silent> <leader>t :Ex<CR>
-
 noremap <silent> <leader>j :cn<CR>
 noremap <silent> <leader>k :cp<CR>
 noremap <silent> <leader>l :clist<CR>
