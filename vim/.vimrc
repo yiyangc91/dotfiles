@@ -11,7 +11,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 call vundle#end()
 
@@ -62,6 +61,9 @@ set history=1000
 set undolevels=16384
 set clipboard=unnamed
 
+" netrw
+let g:netrw_liststyle=3
+
 " Color, Appearance and Syntax
 set background=dark
 colorscheme base16-default
@@ -82,7 +84,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <leader>t :Ex<CR>
 
 noremap <silent> <leader>j :cn<CR>
 noremap <silent> <leader>k :cp<CR>
