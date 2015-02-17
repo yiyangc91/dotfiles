@@ -1,21 +1,24 @@
 " vim:set ft=vim et sw=2:
 
-execute pathogen#infect()
 set nocompatible
 filetype off
 
 " Vundle!
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-vinegar'
 call vundle#end()
 
 " Plugin Configuration
-" Nothing here.
+" Nothing here
 
 " Default Tabbing
 filetype plugin indent on
@@ -62,7 +65,8 @@ set undolevels=16384
 set clipboard=unnamed
 
 " netrw
-let g:netrw_liststyle=3
+let g:netrw_bufsettings='noma nomod nu relativenumber nowrap ro nobl'
+let g:netrw_banner=0
 
 " Color, Appearance and Syntax
 set background=dark
@@ -78,6 +82,7 @@ set incsearch
 
 " Keybindings
 nmap <space> <leader>
+vmap <space> <leader>
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
