@@ -8,17 +8,27 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'bling/vim-airline'
+" Colorscheme
 Plugin 'chriskempson/base16-vim'
+
+" Behaviour Changing Plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-commentary' " gcc
+Plugin 'tpope/vim-surround' " cs, ys, visual S
+Plugin 'tpope/vim-vinegar' " makes netrw usable
 call vundle#end()
 
 " Plugin Configuration
-" Nothing here
+let g:syntastic_check_on_open = 1
+
+" Color, Appearance and Syntax
+set background=dark
+colorscheme base16-default
+
+syntax on
+set number
+set relativenumber
 
 " Default Tabbing
 filetype plugin indent on
@@ -34,6 +44,17 @@ set softtabstop=3
 set laststatus=2
 set ruler
 set showcmd
+
+set statusline=%<
+set statusline+=\ %f\ 
+set statusline+=%h%m%r%w\ 
+set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
+
+set statusline+=%= " SPLIT
+
+set statusline+=%{strlen(&fenc)?&fenc:'none'}[%{&ff}]\ 
+set statusline+=❮\ %3(%l:\ %c%V%)\ 
+set statusline+=❮\ %3(%P%)\ 
 
 " Editor Display
 set display+=lastline
@@ -67,14 +88,6 @@ set clipboard=unnamed
 " netrw
 let g:netrw_bufsettings='noma nomod nu relativenumber nowrap ro nobl'
 let g:netrw_banner=0
-
-" Color, Appearance and Syntax
-set background=dark
-colorscheme base16-default
-
-syntax on
-set number
-set relativenumber
 
 " Searching
 set hlsearch
