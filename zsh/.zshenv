@@ -1,19 +1,11 @@
-export EDITOR=vim
-export PAGER=less
-
-# Our home binaries first.
-# Make sure this directory is chmodded properly!
+# PATH
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
-
-# Then append RVM/Cabal/etc at the end
-[[ -d "$HOME/.cabal/bin" ]] && PATH="$PATH:$HOME/.cabal/bin"
-[[ -d "$HOME/.rvm/bin" ]] && PATH="$PATH:$HOME/.rvm/bin"
+[[ -d "$HOME/.rbenv/bin" ]] && PATH="$HOME/.rbenv/bin:$PATH"
+[[ -d "$HOME/.cabal/bin" ]] && PATH="$HOME/.cabal/bin:$PATH"
 
 export PATH
 
-### HACKS ###
-
-# Fucking Debian Bullshit
+# Debian compinit is pointless
 skip_global_compinit=1
 
 # OSX fun + fix the java version

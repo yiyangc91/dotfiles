@@ -1,8 +1,11 @@
 # Set up a place to dump all my ZSH stuff
 [[ -d "$HOME/.zsh" ]] || mkdir -p "$HOME/.zsh"
 [[ -d "$HOME/.zsh/cache" ]] || mkdir -p "$HOME/.zsh/cache"
-[[ -d "$HOME/.zsh/antigen" ]] || mkdir -p "$HOME/.zsh/antigen"
-[[ -e "$HOME/.zsh/antigen.zsh" ]] || echo "Antigen not installed" >&2
+[[ -d "$HOME/.zsh/antigen" ]] || git clone https://github.com/zsh-users/antigen.git "$HOME/.zsh/antigen"
+[[ -e "$HOME/.zsh/antigen.zsh" ]] || ln -s "$HOME/.zsh/antigen/antigen.zsh" "$HOME/.zsh/antigen.zsh"
+
+EDITOR=vim
+PAGER=less
 
 HISTFILE="$HOME/.zsh/histfile"
 HISTSIZE=16384
@@ -98,7 +101,7 @@ if type virtualenvwrapper.sh &> /dev/null; then
    . virtualenvwrapper.sh
 fi
 
-[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -d "$HOME/.rbenv/bin" ]] && eval "$(rbenv init -)"
 
 ADOTDIR="$HOME/.zsh/antigen"
 . "$HOME/.zsh/antigen.zsh"
@@ -144,13 +147,15 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]=none
 #
 # ZLE configuration
 #
-# Color Guide:
-#  Generally just pick anything that looks good:
-#  - blue is reserved for directories, because there are tons of those, and
-#    otherwise there's way too much blue on the screen.
-#  - green and red for "good" and "alert/bad/wtf".
-#  - yellow/cyan used in RPS1 as label+value. magenta for secondary label.
-#    red and green also used in place of magenta as appropriate.
+# Color Guide (for prompts):
+# - Primary Colors
+#   Blue  => Generic Values
+#   Red   => Bad/Warning/Critical Values
+#   Green => Good/Okay Values
+# - Secondary Colors
+#   Yellow  ( red/green )   => Label
+#   Magenta ( red/blue )    => Secondary Label/Tertiery Value
+#   Cyan    ( green/blue )  => Secondary Generic Value
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -177,7 +182,20 @@ function _construct_right_prompt {
       virtualenv="[%F{yellow}venv/%f%F{cyan}$(basename $VIRTUAL_ENV)%f]"
    fi
 
-   echo "${vcs_info_msg_0_}${virtualenv}"
+   local rbenv=''
+   if type rbenv &> /dev/null; then
+      # the next two lines were shamelessly taken from oh-my-zsh
+      local current_ruby=$(rbenv version-name)
+      local current_gemset=$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp;N;b a' | head -n1)
+
+      if [[ -n $current_gemset ]]; then
+         rbenv="[%F{yellow}rbenv%f/%F{cyan}$current_ruby%f/%F{magenta}$current_gemset%f]"
+      elif [[ $current_ruby != system ]]; then
+         rbenv="[%F{yellow}rbenv%f/%f%F{cyan}$current_ruby%f]"
+      fi
+   fi
+
+   echo "${vcs_info_msg_0_}${virtualenv}${rbenv}"
 }
 
 function _construct_left_prompt {
@@ -187,7 +205,7 @@ function _construct_left_prompt {
    else
       indicator="%F{white}%(!.#.%%)%f"
    fi
-   echo "%B%F{black}%*%f%b %F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f${indicator} "
+   echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f${indicator} "
 }
 
 PS1='$(_construct_left_prompt)'
