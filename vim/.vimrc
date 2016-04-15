@@ -17,6 +17,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary' " gcc
 Plugin 'tpope/vim-surround' " cs, ys, visual S
 Plugin 'tpope/vim-vinegar' " makes netrw usable
+
+let vimplugins=$HOME."/.vimplugins"
+if filereadable(vimplugins)
+  exec 'source ' . vimplugins
+endif
+
 call vundle#end()
 
 " Plugin Configuration
@@ -123,3 +129,5 @@ autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType puppet setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
