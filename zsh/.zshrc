@@ -1,3 +1,8 @@
+# Local ZSH stuff
+if [[ -e "$HOME/.zshlocalrc" ]]; then
+   . "$HOME/.zshlocalrc"
+fi
+
 # Set up a place to dump all my ZSH stuff
 [[ -d "$HOME/.zsh" ]] || mkdir -p "$HOME/.zsh"
 [[ -d "$HOME/.zsh/cache" ]] || mkdir -p "$HOME/.zsh/cache"
@@ -96,12 +101,12 @@ zstyle ':completion:*:*:(scp|ssh):*:hosts-domain' ignored-patterns '<->.<->.<->.
 zstyle ':completion:*:*:(scp|ssh):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
 # Applications and stuff
-if type virtualenvwrapper.sh &> /dev/null; then
+if type virtualenvwrapper_lazy.sh &> /dev/null; then
    export VIRTUAL_ENV_DISABLE_PROMPT=1
-   . virtualenvwrapper.sh
+   . virtualenvwrapper_lazy.sh
 fi
 
-[[ -d "$HOME/.rbenv/bin" ]] && eval "$(rbenv init -)"
+# [[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
 
 ADOTDIR="$HOME/.zsh/antigen"
 . "$HOME/.zsh/antigen.zsh"
@@ -232,14 +237,14 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M viins "^A" _next_tags
 bindkey -M viins "^R" history-incremental-search-backward
 
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# bindkey -M vicmd 'k' history-substring-search-up
+# bindkey -M vicmd 'j' history-substring-search-down
 
 bindkey -sM vicmd '^[' '^G' # Rebind ESC to Bell in cmd mode
 bindkey -rM viins '^X' # Unbind self-insert to allow the other ^X binds to work
 
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 #
 # Aliases
@@ -268,8 +273,3 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 alias d='dirs -v | head -10'
-
-# Pick up local zsh stuff, things we want separated per computer
-if [[ -e "$HOME/.zshlocalrc" ]]; then
-   . "$HOME/.zshlocalrc"
-fi
