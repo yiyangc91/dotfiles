@@ -1,11 +1,3 @@
-brred=9
-brgreen=10
-bryellow=11
-brblue=12
-brmagenta=13
-brcyan=14
-brwhite=15
-
 # Local ZSH stuff
 if [[ -e "$HOME/.zshlocalrc" ]]; then
    . "$HOME/.zshlocalrc"
@@ -54,9 +46,7 @@ if [[ -d "/usr/local/share/zsh-completions" ]]; then
    fpath=("/usr/local/share/zsh-completions" $fpath)
 fi
 
-# TODO fix LS_COLORS and dircolors
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-export LSCOLORS='ExFxCxDxbxEgEdAbAgAcAd'
 
 # Completion Configuration
 zmodload -i zsh/complist
@@ -79,7 +69,7 @@ zstyle ':completion::complete:*' cache-path "$HOME/.zsh/cache"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format "%F{$brwhite}%B%d%b%f"
+zstyle ':completion:*:descriptions' format '%F{white}%B%d%b%f'
 
 # Stolen from oh-my-zsh - ignore uninteresting users
 zstyle ':completion:*:users' ignored-patterns adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna clamav colord daemon dbus distcache dnsmasq dovecot fax ftp games gdm gkrellmd gopher hacluster haldaemon halt hsqldb http ident junkbust kdm ldap lp mail mailman mailnull man messagebus mldonkey murmur mysql nagios named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync 'systemd-*' tftp usbmux uucp uuidd vcsa wwwrun xfs '_*'
@@ -121,30 +111,30 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[bracket-error]=bg=red
 ZSH_HIGHLIGHT_STYLES[unknown-token]=bg=red
 
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=$bryellow
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=$bryellow
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=$brred
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=fg=$brcyan
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=$brblue
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=red
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=blue
 
-ZSH_HIGHLIGHT_STYLES[alias]=fg=$brgreen
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=$brgreen
-ZSH_HIGHLIGHT_STYLES[command]=fg=$brgreen
-ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=$brgreen
-ZSH_HIGHLIGHT_STYLES[function]=fg=$brgreen
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=$brgreen,underline
+ZSH_HIGHLIGHT_STYLES[alias]=fg=green
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
+ZSH_HIGHLIGHT_STYLES[command]=fg=green
+ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=green
+ZSH_HIGHLIGHT_STYLES[function]=fg=green
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
 
-ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=$brmagenta
-ZSH_HIGHLIGHT_STYLES[assign]=fg=$brred
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[assign]=fg=red
 
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=$brmagenta
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=$brmagenta
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
 
-ZSH_HIGHLIGHT_STYLES[globbing]=fg=$brblue
-ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=$brblue
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue
 
 ZSH_HIGHLIGHT_STYLES[path]=underline
-ZSH_HIGHLIGHT_STYLES[path_approx]=fg=$bryellow,underline
+ZSH_HIGHLIGHT_STYLES[path_approx]=fg=yellow,underline
 ZSH_HIGHLIGHT_STYLES[path_prefix]=underline
 
 ZSH_HIGHLIGHT_STYLES[default]=none
@@ -166,11 +156,11 @@ bindkey -v
 export KEYTIMEOUT=1
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats "[%F{$bryellow}%s%f/%F{$brcyan}%b%f%c%u]"
-zstyle ':vcs_info:*' actionformats "[%F{$bryellow}%s%f/%F{$brcyan}%b%f%c%u|%F{red}%a%f]"
+zstyle ':vcs_info:*' formats '[%F{yellow}%s%f/%F{cyan}%b%f%c%u]'
+zstyle ':vcs_info:*' actionformats '[%F{yellow}%s%f/%F{cyan}%b%f%c%u|%F{red}%a%f]'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' check-for-staged-changes true
-zstyle ':vcs_info:*' stagedstr "%F{$brgreen}•%f"
+zstyle ':vcs_info:*' stagedstr '%F{green}•%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red}•%f'
 
 function preexec() {
@@ -185,7 +175,7 @@ function _construct_right_prompt {
 
    local virtualenv=''
    if [[ -n "$VIRTUAL_ENV" ]]; then
-      virtualenv="[%F{$bryellow}venv/%f%F{$brcyan}$(basename $VIRTUAL_ENV)%f]"
+      virtualenv="[%F{yellow}venv/%f%F{cyan}$(basename $VIRTUAL_ENV)%f]"
    fi
 
    local rbenv=''
@@ -195,9 +185,9 @@ function _construct_right_prompt {
       local current_gemset=$(rbenv gemset active 2&>/dev/null | sed -e ":a" -e '$ s/\n/+/gp;N;b a' | head -n1)
 
       if [[ -n $current_gemset ]]; then
-         rbenv="[%F{$bryellow}rbenv%f/%F{$brcyan}$current_ruby%f/%F{$brmagenta}$current_gemset%f]"
+         rbenv="[%F{yellow}rbenv%f/%F{cyan}$current_ruby%f/%F{magenta}$current_gemset%f]"
       elif [[ $current_ruby != system ]]; then
-         rbenv="[%F{$bryellow}rbenv%f/%f%F{$brcyan}$current_ruby%f]"
+         rbenv="[%F{yellow}rbenv%f/%f%F{cyan}$current_ruby%f]"
       fi
    fi
 
@@ -207,11 +197,11 @@ function _construct_right_prompt {
 function _construct_left_prompt {
    local indicator
    if [[ "$KEYMAP" == "vicmd" ]]; then
-      indicator="%F{$brwhite}%B•%b%f"
+      indicator="%F{white}%B•%b%f"
    else
-      indicator="%F{$brwhite}%(!.#.%%)%f"
+      indicator="%F{white}%(!.#.%%)%f"
    fi
-   echo "%F{$bryellow}%n%f@%F{$brmagenta}%m%f %F{$brblue}%(4~:.../:)%3~%f${indicator} "
+   echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f${indicator} "
 }
 
 PS1='$(_construct_left_prompt)'
