@@ -1,36 +1,44 @@
 " vim:set ft=vim et sw=2:
 
 set nocompatible
-filetype off
 
-" Vundle!
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+" Vim-Plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
 
 " Colorscheme
-Plugin 'chriskempson/base16-vim'
+Plug 'romainl/flattened'
 
 " Behaviour Changing Plugins
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary' " gcc
-Plugin 'tpope/vim-surround' " cs, ys, visual S
-Plugin 'tpope/vim-vinegar' " makes netrw usable
+Plug 'scrooloose/syntastic' " syntax checking
+Plug 'tpope/vim-commentary' " gcc for fast commenting
+Plug 'tpope/vim-vinegar'
+Plug 'junegunn/fzf', { 'dir': '~/.vim/fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'stephpy/vim-yaml'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
   exec 'source ' . vimplugins
 endif
 
-call vundle#end()
+call plug#end()
 
 " Plugin Configuration
-let g:syntastic_check_on_open = 1
+packadd! matchit
 
 " Color, Appearance and Syntax
-set background=dark
-colorscheme base16-default
+colorscheme flattened_dark
+
+" iTerm2 cursor funkyness
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 syntax on
 set number
@@ -54,7 +62,7 @@ set showcmd
 set statusline=%<
 set statusline+=\ %f\ 
 set statusline+=%h%m%r%w\ 
-set statusline+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
+set statusline+=%#warningmsg#%*
 
 set statusline+=%= " SPLIT
 
@@ -68,22 +76,26 @@ set scrolloff=3
 
 set colorcolumn=80
 
-set listchars=tab:▸\ ,eol:¬,trail:⋅,nbsp:⋅
+set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:⋅
 
 " Input Configuration
 set ttimeout
 set ttimeoutlen=100
 
 set mouse=a
-set backspace=2
+set backspace=indent,eol,start   " allows backspace over anything. default in vim
 
 " Insert Mode
-set nrformats-=octal
-set completeopt=menuone,longest
+set nrformats-=octal             " excludes octal numbers for ^A and ^X. default in vim
+set completeopt=menuone,longest  " always displays the menu, even for a single completion, and fill out the longest common word
 
 " Command Mode
-set wildmenu
-set wildmode=list:longest,full
+set wildmenu                     " this enables command mode autocompletion menu
+set wildmode=longest:full,full   " lists the options first (longest:full) and then tab through them (full)
+
+" Persistent Undos
+set undofile
+set undodir=~/.vim/undo-dir/
 
 " Vim Behaviour
 set autoread
@@ -92,16 +104,15 @@ set undolevels=16384
 set clipboard=unnamed
 
 " netrw
-let g:netrw_bufsettings='noma nomod nu relativenumber nowrap ro nobl'
-let g:netrw_banner=0
+let g:netrw_liststyle = 3
+let g:netrw_bufsettings='nu relativenumber nobl'
 
 " Searching
 set hlsearch
 set incsearch
 
 " Keybindings
-nmap <space> <leader>
-vmap <space> <leader>
+let mapleader=" "
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -112,17 +123,26 @@ noremap <silent> <leader>j :cn<CR>
 noremap <silent> <leader>k :cp<CR>
 noremap <silent> <leader>l :clist<CR>
 
-nnoremap <silent> <leader>s :setlocal list!<CR>
-
 nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
 inoremap <C-u> <C-g>u<C-u>
 
-nnoremap <silent> <leader>n :set relativenumber!<CR>
 
-nnoremap <silent> <leader>b :CtrlPBuffer<CR>
-nnoremap <silent> <leader>v :CtrlPMRU<CR>
+" FZF bindings
+nnoremap <leader>s :Ag 
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>/ :BLines<CR>
+nnoremap <silent> <leader>f :Lines<CR>
+nnoremap <silent> <C-p> :Files<CR>
+
+" Option toggles
+nnoremap <leader>ol :setlocal list! list?<CR>
+nnoremap <leader>on :setlocal number! number?<CR>
+nnoremap <leader>or :setlocal relativenumber! relativenumber?<CR>
+nnoremap <leader>oh :setlocal hlsearch! hlsearch?<CR>
+nnoremap <leader>os :setlocal spell! spell?<CR>
+nnoremap <leader>ow :setlocal wrap! wrap?<CR>
+nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
 " Filetype specific commands
 autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
@@ -131,3 +151,4 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4

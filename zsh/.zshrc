@@ -46,23 +46,7 @@ if [[ -d "/usr/local/share/zsh-completions" ]]; then
    fpath=("/usr/local/share/zsh-completions" $fpath)
 fi
 
-# This is not in zshenv because these are specific to interactive shells
-# OSX and BSD can go die in a fire
-export LSCOLORS='exfxcxdxbxbfafBxGxacae'
-if ls --color=auto &> /dev/null; then
-   if type dircolors &> /dev/null && [[ -f "$HOME/.dir_colors" ]]; then
-      eval $(dircolors "$HOME/.dir_colors")
-   else
-      echo 'Warning: Using GNU coreutils but cannot do colors properly' >&2
-      export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:do=03;32:or=41;35:ca=5;47;1;32:st=1;42;32:mh=01:'
-   fi
-fi
-
-# We're probably on OSX/BSD
-if [[ -z "$LS_COLORS" ]]; then
-   export LS_COLORS='rs=0:di=00;34:ln=00;35:so=00;32:pi=00;33:ex=00;31:bd=45;31:cd=45;30:su=01;31:sg=01;36:tw=42;30:ow=44;30:'
-fi
-
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
 # Completion Configuration
 zmodload -i zsh/complist
@@ -100,7 +84,7 @@ zstyle ':completion:*:*:(scp|ssh):*:hosts-host' ignored-patterns '*.*' loopback 
 zstyle ':completion:*:*:(scp|ssh):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^*.*' '*@*'
 zstyle ':completion:*:*:(scp|ssh):*:hosts-ipaddr' ignored-patterns '^<->.<->.<->.<->' '127.0.0.<->'
 
-# Applications and stuff
+# Applications + extras
 if type virtualenvwrapper_lazy.sh &> /dev/null; then
    export VIRTUAL_ENV_DISABLE_PROMPT=1
    . virtualenvwrapper_lazy.sh
@@ -111,11 +95,18 @@ fi
 ADOTDIR="$HOME/.zsh/antigen"
 . "$HOME/.zsh/antigen.zsh"
 antigen bundle "https://github.com/zsh-users/zsh-syntax-highlighting"
-antigen bundle "https://github.com/zsh-users/zsh-history-substring-search"
 antigen apply
 
+# Additional auticompletions
+if [[ $commands[kubectl] ]]; then
+   . <(kubectl completion zsh)
+fi
+if [[ $commands[helm] ]]; then
+   . <(helm completion zsh)
+fi
+
 # ZSH highlighter coloring
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 ZSH_HIGHLIGHT_STYLES[bracket-error]=bg=red
 ZSH_HIGHLIGHT_STYLES[unknown-token]=bg=red
@@ -235,16 +226,14 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 bindkey -M viins "^A" _next_tags
-bindkey -M viins "^R" history-incremental-search-backward
-
-# bindkey -M vicmd 'k' history-substring-search-up
-# bindkey -M vicmd 'j' history-substring-search-down
 
 bindkey -sM vicmd '^[' '^G' # Rebind ESC to Bell in cmd mode
 bindkey -rM viins '^X' # Unbind self-insert to allow the other ^X binds to work
 
-# bindkey "$terminfo[kcuu1]" history-substring-search-up
-# bindkey "$terminfo[kcud1]" history-substring-search-down
+# Add additional FZF keybindings and autocompletion after initing vimode
+if [[ -e "$HOME/.fzf.zsh" ]]; then
+   . "$HOME/.fzf.zsh"
+fi
 
 #
 # Aliases
