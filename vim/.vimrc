@@ -12,7 +12,7 @@ endif
 call plug#begin()
 
 " Colorscheme
-Plug 'romainl/flattened'
+Plug 'romainl/Apprentice'
 
 " Behaviour Changing Plugins
 Plug 'scrooloose/syntastic' " syntax checking
@@ -33,7 +33,7 @@ call plug#end()
 packadd! matchit
 
 " Color, Appearance and Syntax
-colorscheme flattened_dark
+colorscheme apprentice
 
 " iTerm2 cursor funkyness
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
