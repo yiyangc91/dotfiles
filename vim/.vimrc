@@ -32,9 +32,6 @@ call plug#end()
 " Plugin Configuration
 packadd! matchit
 
-" Color, Appearance and Syntax
-colorscheme apprentice
-
 " iTerm2 cursor funkyness
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 " let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -152,3 +149,6 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
+
+" Color
+colorscheme apprentice
