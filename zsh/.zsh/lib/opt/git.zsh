@@ -2,9 +2,15 @@
 
 alias g='git'
 alias ga='git add'
+
+alias gc='git commit'
 alias gcam='git commit -am'
+alias gca!='git commit -a --amend'
+
+alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gcm='git checkout master'
+
 alias gd='git diff'
 
 alias gl='git pull'
@@ -20,6 +26,7 @@ alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
 
+alias gru='git reset --'
 alias grh='git reset HEAD'
 alias grhh='git reset --hard HEAD'
 
