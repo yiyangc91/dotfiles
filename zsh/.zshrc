@@ -25,6 +25,14 @@ _YIYANG_ZSH_PLUGIN_ZSH_COMPLETIONS_DIR="$_YIYANG_ZSH_PLUGINS_DIR/zsh-completions
 if [[ ! -d "$_YIYANG_ZSH_PLUGIN_ZSH_COMPLETIONS_DIR" ]]; then
    git clone --depth 1 https://github.com/zsh-users/zsh-completions.git "$_YIYANG_ZSH_PLUGIN_ZSH_COMPLETIONS_DIR"
 fi
+_YIYANG_ZSH_PLUGIN_Z_DIR="$_YIYANG_ZSH_PLUGINS_DIR/z.git"
+if [[ ! -d "$_YIYANG_ZSH_PLUGIN_Z_DIR" ]]; then
+   git clone --depth 1 https://github.com/rupa/z.git "$_YIYANG_ZSH_PLUGIN_Z_DIR"
+fi
+_YIYANG_ZSH_PLUGIN_TIPZ_DIR="$_YIYANG_ZSH_PLUGINS_DIR/tipz.git"
+if [[ ! -d "$_YIYANG_ZSH_PLUGIN_TIPZ_DIR" ]]; then
+   git clone --depth 1 https://github.com/molovo/tipz "$_YIYANG_ZSH_PLUGIN_TIPZ_DIR"
+fi
 
 # If this is a symlink we also need to create the link for lib
 (
@@ -44,18 +52,22 @@ unsetopt flow_control # disables ^S and ^Q for controlling terminal output
 . "$_YIYANG_ZSH/lib/completion.zsh"
 . "$_YIYANG_ZSH/lib/history.zsh"
 . "$_YIYANG_ZSH/lib/keybinds.zsh"
-. "$_YIYANG_ZSH/lib/pushd.zsh"
 
 # Turns out, antigen fucks with completion
 # I've decided to nuke it
 # Just source plugins directly
 source $_YIYANG_ZSH_PLUGIN_ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.plugin.zsh
 source $_YIYANG_ZSH_PLUGIN_ZSH_COMPLETIONS_DIR/zsh-completions.plugin.zsh
+_Z_DATA="$_YIYANG_ZSH/.z"
+source $_YIYANG_ZSH_PLUGIN_Z_DIR/z.sh
+source $_YIYANG_ZSH_PLUGIN_TIPZ_DIR/tipz.zsh
 
 . "$_YIYANG_ZSH/lib/plugins/zsh-syntax-highlighting.zsh"
 
 # Things which configure various external tools
+. "$_YIYANG_ZSH/lib/opt/cdr.zsh"
 . "$_YIYANG_ZSH/lib/opt/fzf.zsh"
+. "$_YIYANG_ZSH/lib/opt/git.zsh"
 . "$_YIYANG_ZSH/lib/opt/grep.zsh"
 . "$_YIYANG_ZSH/lib/opt/helm.zsh"
 . "$_YIYANG_ZSH/lib/opt/kubectl.zsh"

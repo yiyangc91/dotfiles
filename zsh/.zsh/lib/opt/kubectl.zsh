@@ -14,9 +14,17 @@ fi
 
 # This command is used ALOT both below and in daily life
 alias k=kubectl
-
-# Apply a YML file
 alias kaf='k apply -f'
+alias kl='k logs'
+
+# kubectl get various things
+alias kg='k get'
+alias kgsi='k get serviceinstances'
+alias kgsb='k get servicebindings'
+alias kgst='k get state'
+alias kgbu='k get bundle'
+alias kgsec='k get secret'
+alias kgp='k get pods'
 
 # # Drop into an interactive terminal on a container
 # alias keti='k exec -ti'
@@ -63,6 +71,5 @@ alias kaf='k apply -f'
 # alias krh='k rollout history'
 # alias kru='k rollout undo'
 
-# # Logs
-# alias kl='k logs'
+# Logs
 # alias klf='k logs -f'
