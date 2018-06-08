@@ -15,8 +15,8 @@ zstyle ':vcs_info:*' formats '[%F{yellow}%s%f/%F{cyan}%b%f%c%u]'
 zstyle ':vcs_info:*' actionformats '[%F{yellow}%s%f/%F{cyan}%b%f%c%u|%F{red}%a%f]'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' check-for-staged-changes true
-zstyle ':vcs_info:*' stagedstr '%F{green}•%f'
-zstyle ':vcs_info:*' unstagedstr '%F{red}•%f'
+zstyle ':vcs_info:*' stagedstr '%F{green}*%f'
+zstyle ':vcs_info:*' unstagedstr '%F{red}*%f'
 
 function preexec() {
 }
@@ -34,7 +34,7 @@ function _construct_right_prompt {
 }
 
 function _construct_left_prompt {
-   local vimode=$(vi_mode_prompt_info "%F{white}%B•%b%f" "%F{white}%(!.#.%%)%f")
+   local vimode=$(vi_mode_prompt_info "%F{white}%B*%b%f" "%F{white}%(!.#.%%)%f")
 
    echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f${vimode} "
 }

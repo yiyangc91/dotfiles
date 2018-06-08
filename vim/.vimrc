@@ -1,4 +1,4 @@
-" vim:set ft=vim et sw=2:
+﻿" vim:set ft=vim et sw=2:
 
 set nocompatible
 
