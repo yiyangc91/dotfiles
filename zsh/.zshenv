@@ -2,6 +2,10 @@
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/.rbenv/bin" ]] && PATH="$HOME/.rbenv/bin:$PATH"
 [[ -d "$HOME/.cabal/bin" ]] && PATH="$HOME/.cabal/bin:$PATH"
+[[ -d "$HOME/go" ]] && {
+   export GOPATH="$HOME/go"
+   PATH="$PATH:$GOPATH/bin"
+}
 
 export PATH
 

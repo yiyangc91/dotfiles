@@ -32,7 +32,16 @@ compinit -d "$_YIYANG_COMPDUMPFILE"
 # :completion:* will set that option for all tags
 
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# This defines how completions match (e.g. end of line, fuzzy, etc)
+# oh-my-zsh uses the commented out one below (except with something less powerful)
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#
+# I pulled this instead from https://superuser.com/questions/415650/does-a-fuzzy-matching-mode-exist-for-the-zsh-shell
+# and kept the case-insensitive stuff from oh-my-zsh
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_/}={A-Za-z_-/}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-zA-Z-_/}={A-Za-z_-/}' \
+  'r:|?=** m:{a-zA-Z-_/}={A-Za-z_-/}'
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' list-prompt '%S%M matches%s' # page matches

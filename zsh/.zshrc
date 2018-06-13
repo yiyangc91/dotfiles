@@ -2,6 +2,44 @@ export EDITOR=vim
 export PAGER=less
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
+#===================================
+# Lazy Load to speed up zsh start
+#
+# Authors:
+#   xcv58 <i@xcv58.com>
+#-----------------------------------
+# TODO: get working so that completions lazy load on tab?
+
+function lazy_load() {
+    local load_func=${1}
+    local lazy_func="lazy_${load_func}"
+
+    shift
+    for i in ${@}; do
+        alias ${i}="${lazy_func} ${i}"
+    done
+
+    eval "
+    function ${lazy_func}() {
+        unset -f ${lazy_func}
+        lazy_load_clean $@
+        eval ${load_func}
+        unset -f ${load_func}
+        eval \$@
+    }
+    "
+}
+
+function lazy_load_clean() {
+    for i in ${@}; do
+        unalias ${i}
+    done
+}
+
+#----------------------------------
+# End Lazy Load
+#==================================
+
 _YIYANG_ZSH="$HOME/.zsh"
 _YIYANG_ZSH_CACHE_DIR="$_YIYANG_ZSH/cache"
 _YIYANG_ZSH_PLUGINS_DIR="$_YIYANG_ZSH/plugins"
@@ -19,13 +57,13 @@ fi
 
 # If this is a symlink we also need to create the link for lib
 (
-if [[ -L "$HOME/.zshrc" ]]; then
+if [[ -L "$HOME/.zshrc" && ! -e "$_YIYANG_ZSH/lib" ]]; then
    cd "$HOME"
    rcsymlink=$(dirname $(readlink .zshrc))
    zshsrcdir=$(cd "$rcsymlink" && pwd)
 
    # If there's no lib then link it otherwise don't touch
-   [[ -e "$_YIYANG_ZSH/lib" ]] || ln -s "$zshsrcdir/.zsh/lib" "$_YIYANG_ZSH/lib"
+   ln -s "$zshsrcdir/.zsh/lib" "$_YIYANG_ZSH/lib"
 fi
 )
 
@@ -54,14 +92,18 @@ function load_plugin() {
 
 load_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting.plugin.zsh
 load_plugin https://github.com/zsh-users/zsh-completions.git zsh-completions.plugin.zsh
-_Z_DATA="$_YIYANG_ZSH/.z" load_plugin https://github.com/rupa/z.git z.sh
+_Z_DATA="$_YIYANG_ZSH/.z" 
+load_plugin https://github.com/rupa/z.git z.sh
 load_plugin https://github.com/molovo/tipz tipz.zsh
+load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
 
 . "$_YIYANG_ZSH/lib/plugins/zsh-syntax-highlighting.zsh"
+. "$_YIYANG_ZSH/lib/plugins/zsh-autosuggestions.zsh"
 
 # Things which configure various external tools
 . "$_YIYANG_ZSH/lib/opt/cdr.zsh"
 . "$_YIYANG_ZSH/lib/opt/fzf.zsh"
+. "$_YIYANG_ZSH/lib/opt/fancy-ctrl-z.zsh"
 . "$_YIYANG_ZSH/lib/opt/git.zsh"
 . "$_YIYANG_ZSH/lib/opt/grep.zsh"
 . "$_YIYANG_ZSH/lib/opt/helm.zsh"

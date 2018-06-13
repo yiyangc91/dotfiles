@@ -1,11 +1,15 @@
 if (( $+commands[helm] )); then
-    __HELM_COMPLETION_FILE="${_YIYANG_ZSH_CACHE_DIR}/helm_completion"
+   lazy_load load_helm helm
 
-    if [[ ! -f $__HELM_COMPLETION_FILE ]]; then
-        helm completion zsh >! $__HELM_COMPLETION_FILE
-    fi
+   function load_helm() {
+      __HELM_COMPLETION_FILE="${_YIYANG_ZSH_CACHE_DIR}/helm_completion"
 
-    [[ -f $__HELM_COMPLETION_FILE ]] && source $__HELM_COMPLETION_FILE
+      if [[ ! -f $__HELM_COMPLETION_FILE ]]; then
+         helm completion zsh >! $__HELM_COMPLETION_FILE
+      fi
 
-    unset __HELM_COMPLETION_FILE
+      [[ -f $__HELM_COMPLETION_FILE ]] && source $__HELM_COMPLETION_FILE
+
+      unset __HELM_COMPLETION_FILE
+   }
 fi

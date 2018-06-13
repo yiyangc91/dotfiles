@@ -2,6 +2,8 @@ _YIYANG_ZSH_CDR_DIR=$_YIYANG_ZSH/cdr
 
 [[ -d $_YIYANG_ZSH_CDR_DIR ]] || mkdir -p $_YIYANG_ZSH_CDR_DIR
 
+setopt autocd # allows using .. and ... and stuff
+
 autoload -Uz chpwd_recent_dirs cdr
 autoload -U add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
