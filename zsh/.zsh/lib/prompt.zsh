@@ -36,7 +36,7 @@ function _construct_right_prompt {
 function _construct_left_prompt {
    local vimode=$(vi_mode_prompt_info "%F{white}%B*%b%f" "%F{white}%(!.#.%%)%f")
 
-   echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f${vimode} "
+   echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f%(1j.%F{red}&.)${vimode} "
 }
 
 PS1='$(_construct_left_prompt)'
