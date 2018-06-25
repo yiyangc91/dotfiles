@@ -35,3 +35,5 @@ alias gst='git status'
 alias gsta='git stash'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+
+alias gcl='git clone --recursive'
