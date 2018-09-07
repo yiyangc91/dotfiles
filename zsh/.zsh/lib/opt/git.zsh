@@ -26,7 +26,7 @@ alias grbi='git rebase -i'
 alias grbm='git rebase master'
 alias grbs='git rebase --skip'
 
-alias grs='git reset --'
+alias grs='git reset'
 alias grsh='git reset HEAD'
 alias grshh='git reset --hard HEAD'
 
