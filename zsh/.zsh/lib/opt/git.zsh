@@ -3,9 +3,11 @@
 alias g='git'
 alias ga='git add'
 
-alias gc='git commit'
-alias gcam='git commit -am'
-alias gca!='git commit -a --amend'
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gca='git commit -v -a'
+alias gca!='git commit -v -a --amend'
+alias gcam='git commit -v -a -m'
 
 alias gco='git checkout'
 alias gcb='git checkout -b'
@@ -17,23 +19,22 @@ alias gl='git pull'
 alias gm='git merge'
 alias gp='git push'
 
-alias gr='git remote'
-alias gra='git remote add'
-
 alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
 alias grbm='git rebase master'
+alias grbs='git rebase --skip'
 
-alias gru='git reset --'
-alias grh='git reset HEAD'
-alias grhh='git reset --hard HEAD'
+alias grs='git reset --'
+alias grsh='git reset HEAD'
+alias grshh='git reset --hard HEAD'
 
-alias gst='git status'
+alias gs='git status'
 
-alias gsta='git stash'
+alias gst='git stash'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+alias gsts='git stash show --text'
 
 alias gcl='git clone --recursive'
