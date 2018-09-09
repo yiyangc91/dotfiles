@@ -104,7 +104,6 @@ set clipboard=unnamed
 " Plugin
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings='nu relativenumber nobl'
-let g:ledger_extra_options = '--pedantic --explicit --check-payees'
 
 " Searching
 set hlsearch
