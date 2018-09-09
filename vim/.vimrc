@@ -21,6 +21,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'stephpy/vim-yaml'
+Plug 'ledger/vim-ledger'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -141,7 +142,10 @@ nnoremap <leader>os :setlocal spell! spell?<CR>
 nnoremap <leader>ow :setlocal wrap! wrap?<CR>
 nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
+
 " Filetype specific commands
+autocmd BufNewFile,BufRead *.journal setlocal filetype=ledger
+
 autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType puppet setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
@@ -149,6 +153,8 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
+autocmd FileType ledger setlocal noexpandtab shiftwidth=4 tabstop=4
+autocmd FileType ledger nnoremap <buffer> <silent> t :call ledger#transaction_state_set(line('.'), '*')<CR>
 
 " Color
 colorscheme apprentice
