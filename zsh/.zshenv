@@ -22,4 +22,3 @@ fi
 if [[ -e "$HOME/.zshlocalenv" ]]; then
    . "$HOME/.zshlocalenv"
 fi
-
