@@ -101,9 +101,10 @@ set history=1000
 set undolevels=16384
 set clipboard=unnamed
 
-" netrw
+" Plugin
 let g:netrw_liststyle = 3
 let g:netrw_bufsettings='nu relativenumber nobl'
+let g:ledger_extra_options = '--pedantic --explicit --check-payees'
 
 " Searching
 set hlsearch
@@ -153,8 +154,11 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
+
 autocmd FileType ledger setlocal noexpandtab shiftwidth=4 tabstop=4
-autocmd FileType ledger nnoremap <buffer> <silent> t :call ledger#transaction_state_set(line('.'), '*')<CR>
+autocmd FileType ledger nnoremap <buffer> <silent> <C-m> :call ledger#transaction_state_set(line('.'), '*')<CR>
+autocmd FileType ledger nnoremap <buffer> <silent> <C-n> :call ledger#transaction_date_set(line('.'), 'primary')<CR>
+autocmd FileType ledger nnoremap <buffer> <silent> <C-t> :call ledger#entry()<CR>
 
 " Color
 colorscheme apprentice
