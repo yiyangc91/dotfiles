@@ -92,8 +92,8 @@ function load_plugin() {
 
 load_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting.plugin.zsh
 load_plugin https://github.com/zsh-users/zsh-completions.git zsh-completions.plugin.zsh
-_Z_DATA="$_YIYANG_ZSH/.z" 
-load_plugin https://github.com/rupa/z.git z.sh
+# _Z_DATA="$_YIYANG_ZSH/.z" 
+# load_plugin https://github.com/rupa/z.git z.sh
 load_plugin https://github.com/molovo/tipz tipz.zsh
 load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
 
@@ -104,6 +104,7 @@ load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions
 . "$_YIYANG_ZSH/lib/opt/cdr.zsh"
 . "$_YIYANG_ZSH/lib/opt/fzf.zsh"
 . "$_YIYANG_ZSH/lib/opt/fancy-ctrl-z.zsh"
+. "$_YIYANG_ZSH/lib/opt/fasd.zsh"
 . "$_YIYANG_ZSH/lib/opt/git.zsh"
 . "$_YIYANG_ZSH/lib/opt/grep.zsh"
 . "$_YIYANG_ZSH/lib/opt/helm.zsh"
