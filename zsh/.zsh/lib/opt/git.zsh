@@ -12,13 +12,11 @@ alias gcam='git commit -v -a -m'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gcm='git checkout master'
-alias gc-='git checkout -'
 
 alias gd='git diff'
 
 alias gl='git pull'
 alias gm='git merge'
-alias gmm='git merge master'
 alias gp='git push'
 
 alias grb='git rebase'
