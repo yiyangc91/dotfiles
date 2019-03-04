@@ -15,7 +15,7 @@ call plug#begin()
 Plug 'romainl/Apprentice'
 
 " Behaviour Changing Plugins
-Plug 'scrooloose/syntastic' " syntax checking
+" Plug 'scrooloose/syntastic' " syntax checking
 Plug 'tpope/vim-commentary' " gcc for fast commenting
 Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --bin' }
@@ -111,6 +111,7 @@ set incsearch
 
 " Keybindings
 let mapleader=" "
+let maplocalleader=" "
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -119,15 +120,16 @@ noremap <C-l> <C-w>l
 
 noremap <silent> <leader>j :cn<CR>
 noremap <silent> <leader>k :cp<CR>
-noremap <silent> <leader>l :clist<CR>
+noremap <silent> <leader>c :cclose<CR>
 
+nnoremap <silent> <leader>m :marks<CR>
 nnoremap <silent> <leader>w :w<CR>
 
 inoremap <C-u> <C-g>u<C-u>
 
 
 " FZF bindings
-nnoremap <leader>s :Ag 
+nnoremap <leader>s :Rg 
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>/ :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
@@ -152,7 +154,20 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
+autocmd FileType go nmap <buffer> <localleader>lL <Plug>(go-decls-dir)
+autocmd FileType go nmap <buffer> <localleader>lb <Plug>(go-build)
+autocmd FileType go nmap <buffer> <localleader>le <Plug>(go-iferr)
+autocmd FileType go nmap <buffer> <localleader>lh <Plug>(go-info)
+autocmd FileType go nmap <buffer> <localleader>li <Plug>(go-implements)
+autocmd FileType go nmap <buffer> <localleader>ll <Plug>(go-decls)
+autocmd FileType go nmap <buffer> <localleader>lt <Plug>(go-test)
+autocmd FileType go nmap <buffer> <localleader>lx <Plug>(go-run)
+autocmd FileType go nmap <buffer> <localleader>lu <Plug>(go-referrers)
+
+" d for describe
+" r rename
 
 autocmd FileType ledger setlocal noexpandtab shiftwidth=4 tabstop=4
 autocmd FileType ledger nnoremap <buffer> <silent> <C-m> :call ledger#transaction_state_set(line('.'), '*')<CR>

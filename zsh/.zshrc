@@ -110,6 +110,8 @@ load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions
 . "$_YIYANG_ZSH/lib/opt/kubectl.zsh"
 . "$_YIYANG_ZSH/lib/opt/ls.zsh"
 . "$_YIYANG_ZSH/lib/opt/minikube.zsh"
+. "$_YIYANG_ZSH/lib/opt/nvm.zsh"
+. "$_YIYANG_ZSH/lib/opt/pyenv.zsh"
 . "$_YIYANG_ZSH/lib/opt/rbenv.zsh"
 . "$_YIYANG_ZSH/lib/opt/virtualenv.zsh"
 . "$_YIYANG_ZSH/lib/opt/virtualenvwrapper.zsh"

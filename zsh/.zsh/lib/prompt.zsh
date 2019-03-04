@@ -28,9 +28,11 @@ function precmd () {
 function _construct_right_prompt {
    local virtualenv=$(virtualenv_prompt_info)
    local rbenv=$(rbenv_prompt_info)
+   local pyenv=$(pyenv_prompt_info)
+   local nvm=$(nvm_prompt_info)
 
    # Colors schemes should be defined in one place, not all over the joint
-   echo "${vcs_info_msg_0_}${virtualenv}${rbenv}"
+   echo "${vcs_info_msg_0_}${virtualenv}${pyenv}${rbenv}${nvm}"
 }
 
 function _construct_left_prompt {

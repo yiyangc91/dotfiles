@@ -13,7 +13,7 @@ zstyle ':chpwd:*' recent-dirs-max 1000
 # fall through to cd
 zstyle ':chpwd:*' recent-dirs-default yes
 
-alias d='cdr -l'
+alias d='cdr -l | head -10'
 alias 1='cdr 1'
 alias 2='cdr 2'
 alias 3='cdr 3'
