@@ -1,29 +1,58 @@
 # i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# Base16 Default
-set $grey00 #181818
-set $grey01 #282828
-set $grey02 #383838
-set $grey03 #585858
-set $grey04 #b8b8b8
-set $grey05 #d8d8d8
-set $grey06 #e8e8e8
-set $grey07 #f8f8f8
-set $red    #ab4642
-set $orange #dc9656
-set $yellow #f7ca88
-set $blue   #7cafc2
-set $brown  #a16946
-set $green  #a1b56c
-set $cyan   #86c1b9
-set $purple #ba8baf
+# Apprentice Colorscheme
+# Added a darker variant of blue because it looks nicer.
+# Also added a gray inbetween grey01 and grey03 - the colorscheme uses a diff of
+# 28 between hex values.
+set $red           #AF5F5F
+set $orange        #FF8700
+
+# set $darkgreen     #375F37
+set $green         #5F875F
+# set $lightgreen    #87AF87
+
+# set $yellow        #87875F
+# set $lightyellow   #FFFFAF
+
+set $darkblue      #375F87
+set $blue          #5F87AF
+set $lightblue     #8FAFD7
+
+# set $purple        #5F5F87
+# set $lightpurple   #8787AF
+
+# set $cyan          #5F8787
+# set $lightcyan     #5FAFAF
+
+set $white        #FFFFFF
+set $foreground   #BCBCBC
+set $grey03       #949494
+set $grey02       #6C6C6C
+set $grey01       #444444
+set $grey001      #303030
+set $background   #262626
+set $black        #1C1C1C
 
 # Prefix (Alt)
-set $mod Mod1
+# set $mod Mod1 - I don't know why I originaly had this set to alt...
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Sans 8
+font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -34,11 +63,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# dmenu
-bindsym $mod+Shift+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
+# This has been rebinded to match vim's keybinds
+# The defaults were jkl;
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -49,6 +83,8 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
+# This has been rebound to match vim's keybindings
+# The defaults were jkl;
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -59,11 +95,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # rebind h as split because retarded
+# The default here was $mod+h, but we've got $mod+h rebound for vim
 bindsym $mod+Shift+v split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -80,78 +117,108 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+Shift+a focus child
+#bindsym $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        # This uses vim keybindings, originally it was jkl;
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
+        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
+        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3blocks
+        separator_symbol "〉"
 
+        # Custom apprentice colorscheme
         colors {
-                background $grey00
-                statusline $grey06
-                separator $red
+                background $black
+                statusline $white
+                separator $grey01
 
-                focused_workspace  $grey04 $grey03 $grey07
-                active_workspace   $grey03 $grey02 $grey05
-                inactive_workspace $grey02 $grey01 $grey03
-                urgent_workspace   $brown  $red    $grey07
+                #                  border      background  text
+                focused_workspace  $blue       $darkblue   $foreground
+                active_workspace   $grey01     $background $foreground
+                inactive_workspace $grey01     $background $darkwhite
+                urgent_workspace   $orange     $red        $foreground
         }
 }
 
-client.focused          $grey03 $grey03 $grey07 $grey04
-client.focused_inactive $grey02 $grey02 $grey05 $grey03
-client.unfocused        $grey01 $grey01 $grey03 $grey02
-client.urgent           $brown  $red    $grey07 $brown
+# Custom apprentice colorscheme
+#                       border       background  text        indicator
+client.focused          $blue        $darkblue   $foreground $green
+client.focused_inactive $grey01      $grey02     $foreground $grey03
+client.unfocused        $grey001     $grey01     $grey03     $grey02
+client.urgent           $orange      $lightred   $foreground $red
+
+client.background       $white
 
 # Per application settings
 assign [class="^Firefox$"] 1
