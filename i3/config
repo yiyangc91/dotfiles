@@ -194,6 +194,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
 bar {
+        font pango:monospace 10
         status_command i3blocks
         separator_symbol "〉"
 
@@ -224,3 +225,14 @@ client.background       $white
 assign [class="^Firefox$"] 1
 
 for_window [class="^Firefox$"] border none, layout stacking
+
+# Lol?
+bindsym XF86AudioMute exec amixer set Master toggle;  exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-; exec pkill  -RTMIN+10 i3blocks
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10;
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increase screen brightness
+bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrease screen brightness
