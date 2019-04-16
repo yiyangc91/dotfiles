@@ -14,14 +14,14 @@ if (( $+commands[pyenv] )); then
    if (( $+commands[pyenv-virtualenv-init] )); then
       eval "$(pyenv virtualenv-init - zsh)"
    fi
-
-   function pyenv_prompt_info() {
-      if type pyenv &> /dev/null; then
-         local current_python=$(pyenv version-name)
-
-         if [[ $current_python != system ]]; then
-            echo "[%F{yellow}pyenv%f/%f%F{cyan}$current_python%f]"
-         fi
-      fi
-   }
 fi
+
+function pyenv_prompt_info() {
+   if type pyenv &> /dev/null; then
+      local current_python=$(pyenv version-name)
+
+      if [[ $current_python != system ]]; then
+         echo "[%F{yellow}pyenv%f/%f%F{cyan}$current_python%f]"
+      fi
+   fi
+}
