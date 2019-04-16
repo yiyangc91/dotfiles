@@ -17,11 +17,12 @@ Plug 'romainl/Apprentice'
 " Behaviour Changing Plugins
 " Plug 'scrooloose/syntastic' " syntax checking
 Plug 'tpope/vim-commentary' " gcc for fast commenting
-Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'ledger/vim-ledger'
+Plug 'fatih/vim-go'
+Plug 'scrooloose/nerdtree'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -37,6 +38,23 @@ packadd! matchit
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 " let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+
+
+" Auto Close
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 syntax on
 set number
@@ -102,8 +120,10 @@ set undolevels=16384
 set clipboard=unnamed
 
 " Plugin
-let g:netrw_liststyle = 3
-let g:netrw_bufsettings='nu relativenumber nobl'
+" let g:netrw_liststyle = 3
+" let g:netrw_bufsettings='nu relativenumber nobl'
+let g:dirvish_mode = ':sort ,^.*[\/],'
+let g:dirvish_relative_paths = 0
 
 " Searching
 set hlsearch
@@ -118,15 +138,21 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-noremap <silent> <leader>j :cn<CR>
-noremap <silent> <leader>k :cp<CR>
-noremap <silent> <leader>c :cclose<CR>
+noremap <silent> ]q :cn<CR>
+noremap <silent> [q :cp<CR>
+noremap <silent> ]b :bn<CR>
+noremap <silent> [b :bp<CR>
+noremap <silent> ]l :lnext<CR>
+noremap <silent> [l :lprevious<CR>
 
 nnoremap <silent> <leader>m :marks<CR>
 nnoremap <silent> <leader>w :w<CR>
 
 inoremap <C-u> <C-g>u<C-u>
 
+" NERDTree Bindings
+" Use dirvish bindings for NERDTree
+nnoremap <silent> <expr> - g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
 " FZF bindings
 nnoremap <leader>s :Rg 
