@@ -1,8 +1,7 @@
 ! URXVT
 URxvt.depth: 32
-URxvt.font: xft:monospace:size=10
+URxvt.font: xft:SourceCodePro,xft:mono
 URxvt.jumpScroll: true
-URxvt.letterSpace: -1
 URxvt.saveLines: 16384
 URxvt.scrollBar: false
 URxvt.scrollTtyKeypress: true
