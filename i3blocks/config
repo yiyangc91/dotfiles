@@ -1,3 +1,10 @@
+# User indicator
+[user-info]
+label=⠀
+command=echo '{"full_text": "'$(id -un)@$(hostname)'", "color": "'$(cat $HOME/.i3-user-color)'"}'
+interval=600
+format=json
+
 [battery]
 label=⠀
 separator=true
