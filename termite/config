@@ -7,7 +7,7 @@ font = mono
 # special
 foreground      = #bcbcbc
 foreground_bold = #bcbcbc
-cursor          = #bcbcbc
+#cursor          = #bcbcbc
 background      = #262626
 
 # black
