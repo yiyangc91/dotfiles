@@ -226,12 +226,12 @@ assign [class="^Firefox$"] 1
 
 for_window [class="^Firefox$"] border none, layout stacking
 
-# Lol?
-bindsym XF86AudioMute exec amixer set Master toggle;  exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer set Master 5%+; exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer set Master 5%-; exec pkill  -RTMIN+10 i3blocks
+# sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%;  exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle; exec pkill  -RTMIN+10 i3blocks
 
-# Sreen brightness controls
+# brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10;
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increase screen brightness

@@ -1,10 +1,3 @@
-# User indicator
-[user-info]
-label=⠀
-command=echo '{"full_text": "'$(id -un)@$(hostname)'", "color": "'$(cat $HOME/.i3-user-color)'"}'
-interval=600
-format=json
-
 [battery]
 label=⠀
 separator=true
@@ -64,6 +57,13 @@ command=/usr/lib/i3blocks/bandwidth
 color=#8FAFD7
 #min_width=⠀ IN 2.0M OUT 47K
 align=center
+
+# User indicator
+[user-info]
+label=⠀
+command=echo '{"full_text": "'$(id -un)@$(hostname)'", "color": "'$(cat $HOME/.i3-user-color)'"}'
+interval=600
+format=json
 
 [time]
 command= date '+%d/%m/%Y %H:%M'
