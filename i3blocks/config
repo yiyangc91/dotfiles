@@ -5,7 +5,7 @@ interval=30
 command=/usr/lib/i3blocks/battery
 
 [audio]
-label=⠀
+label=⠀
 interval=once
 command=/usr/lib/i3blocks/volume
 color=#ff8700
@@ -50,13 +50,13 @@ separator=true
 #separator=true
 #color=#87AF87
 
-[bandwidth]
-label=⠀
-interval=5
-command=/usr/lib/i3blocks/bandwidth
-color=#8FAFD7
-#min_width=⠀ IN 2.0M OUT 47K
-align=center
+#[bandwidth]
+#label=⠀
+#interval=5
+#command=/usr/lib/i3blocks/bandwidth
+#color=#8FAFD7
+##min_width=⠀ IN 2.0M OUT 47K
+#align=center
 
 # User indicator
 [user-info]
