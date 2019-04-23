@@ -138,12 +138,20 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+noremap <silent> \q :cclose<CR>
 noremap <silent> ]q :cn<CR>
 noremap <silent> [q :cp<CR>
+noremap <silent> ]Q :clast<CR>
+noremap <silent> [Q :cfirst<CR>
 noremap <silent> ]b :bn<CR>
 noremap <silent> [b :bp<CR>
+noremap <silent> ]B :blast<CR>
+noremap <silent> [B :bfirst<CR>
+noremap <silent> \l :lclose<CR>
 noremap <silent> ]l :lnext<CR>
 noremap <silent> [l :lprevious<CR>
+noremap <silent> ]L :llast<CR>
+noremap <silent> [L :lfirst<CR>
 
 nnoremap <silent> <leader>m :marks<CR>
 nnoremap <silent> <leader>w :w<CR>
@@ -191,6 +199,7 @@ autocmd FileType go nmap <buffer> <localleader>ll <Plug>(go-decls)
 autocmd FileType go nmap <buffer> <localleader>lt <Plug>(go-test)
 autocmd FileType go nmap <buffer> <localleader>lx <Plug>(go-run)
 autocmd FileType go nmap <buffer> <localleader>lu <Plug>(go-referrers)
+autocmd FileType go nmap <buffer> <localleader>la :GoImport
 
 " d for describe
 " r rename
