@@ -241,3 +241,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10;
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increase screen brightness
 bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrease screen brightness
+
+# locking
+bindsym $mod+Escape exec xset s activate
