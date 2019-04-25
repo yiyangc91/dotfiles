@@ -1,9 +1,8 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-# screensaver after 3 minutes, lock the screen 30 seconds after that
 # completely shut off the monitor after 4 minutes
 xset dpms 240 240 240
-xset s 180 30
+xset s 230 # this only serves to warn the user
 
 /usr/bin/dunst &
 /usr/bin/nm-applet &

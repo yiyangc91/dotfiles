@@ -68,7 +68,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -nf #6c6c6c -nb #262626 -sb #375f87 -sf #bcbcbc -fn monospace-10'"
 
 # change focus
 # This has been rebinded to match vim's keybinds
@@ -212,7 +212,7 @@ bar {
                 #                  border      background  text
                 focused_workspace  $blue       $darkblue   $foreground
                 active_workspace   $grey01     $background $foreground
-                inactive_workspace $grey01     $background $darkwhite
+                inactive_workspace $grey01     $background $grey02
                 urgent_workspace   $orange     $red        $foreground
         }
 }

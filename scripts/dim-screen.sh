@@ -55,6 +55,10 @@ fade_brightness() {
     fi
 }
 
+current_brightness=$(get_brightness)
+current_brightness=${current_brightness%.*}
+min_brightness=$(($min_brightness > $current_brightness ? $current_brightness : $min_brightness))
+
 trap 'exit 0' TERM INT
 trap "set_brightness $(get_brightness); kill %%" EXIT
 fade_brightness $min_brightness
