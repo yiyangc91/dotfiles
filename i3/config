@@ -115,6 +115,7 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+bindsym $mod+z focus child
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -157,9 +158,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Like alt-tab except for workspaces
-bindsym $mod+grave workspace back_and_forth
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
