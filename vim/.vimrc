@@ -167,6 +167,7 @@ nnoremap <leader>s :Rg
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>/ :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
+nnoremap <silent> <leader>v :History<CR>
 nnoremap <silent> <C-p> :Files<CR>
 
 " Option toggles
@@ -176,6 +177,7 @@ nnoremap <leader>or :setlocal relativenumber! relativenumber?<CR>
 nnoremap <leader>oh :setlocal hlsearch! hlsearch?<CR>
 nnoremap <leader>os :setlocal spell! spell?<CR>
 nnoremap <leader>ow :setlocal wrap! wrap?<CR>
+nnoremap <leader>op :setlocal paste! paste?<CR>
 nnoremap <silent> <leader><CR> :nohlsearch<CR>
 
 

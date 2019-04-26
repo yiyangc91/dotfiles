@@ -100,7 +100,9 @@ bindsym $mod+Shift+v split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# rebound to $mod+o for zoom - similar to tmux
+# This was originally $mod+f, which was annoying to press
+bindsym $mod+o fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -114,8 +116,9 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
+# added an additional binding to focus the child by holding shift
 bindsym $mod+a focus parent
-bindsym $mod+z focus child
+bindsym $mod+Shift+a focus child
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -244,3 +247,7 @@ bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrea
 
 # locking
 bindsym $mod+Escape exec xset s activate
+
+# screenshots using imagemagick
+bindsym --release Print exec "import -window root $HOME/Pictures/screenshots/$(date --iso-8601=ns).png"
+bindsym --release Shift+Print exec "import $HOME/Pictures/screenshots/$(date --iso-8601=ns).png"
