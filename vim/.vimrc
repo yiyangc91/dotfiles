@@ -193,15 +193,24 @@ autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
 autocmd FileType go nmap <buffer> <localleader>lL <Plug>(go-decls-dir)
+autocmd FileType go nmap <buffer> <localleader>la <Plug>(go-alternate-edit)
 autocmd FileType go nmap <buffer> <localleader>lb <Plug>(go-build)
+autocmd FileType go nmap <buffer> <localleader>lc <Plug>(go-callers)
+autocmd FileType go nmap <buffer> <localleader>lC <Plug>(go-callees)
+autocmd FileType go nmap <buffer> <localleader>ld <Plug>(go-doc)
+autocmd FileType go nmap <buffer> <localleader>lD <Plug>(go-doc-vertical)
 autocmd FileType go nmap <buffer> <localleader>le <Plug>(go-iferr)
 autocmd FileType go nmap <buffer> <localleader>lh <Plug>(go-info)
 autocmd FileType go nmap <buffer> <localleader>li <Plug>(go-implements)
+autocmd FileType go nmap <buffer> <localleader>lI :GoImpl<CR>
 autocmd FileType go nmap <buffer> <localleader>ll <Plug>(go-decls)
+autocmd FileType go nmap <buffer> <localleader>lm <Plug>(go-imports)
+autocmd FileType go nmap <buffer> <localleader>lM :GoImport 
+autocmd FileType go nmap <buffer> <localleader>lr <Plug>(go-rename)
+autocmd FileType go nmap <buffer> <localleader>ls :GoFillStruct<CR>
 autocmd FileType go nmap <buffer> <localleader>lt <Plug>(go-test)
-autocmd FileType go nmap <buffer> <localleader>lx <Plug>(go-run)
 autocmd FileType go nmap <buffer> <localleader>lu <Plug>(go-referrers)
-autocmd FileType go nmap <buffer> <localleader>la :GoImport
+autocmd FileType go nmap <buffer> <localleader>lx <Plug>(go-run)
 
 " d for describe
 " r rename
