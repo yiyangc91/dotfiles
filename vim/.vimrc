@@ -43,6 +43,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeChDirMode=0
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
