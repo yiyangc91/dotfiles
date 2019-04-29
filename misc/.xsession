@@ -7,6 +7,9 @@
 xset dpms 240 240 240
 xset s 230 5
 
+# remap caps-lock because nobody needs it
+setxkbmap -option caps:super
+
 /usr/bin/dunst &
 /usr/bin/nm-applet &
 

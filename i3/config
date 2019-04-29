@@ -233,6 +233,7 @@ client.background       $white
 assign [class="^Firefox$"] 1
 
 for_window [class="^Firefox$"] border none, layout stacking
+for_window [class="Thunderbird" instance="Calendar"] floating enable
 
 # sound
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%;  exec pkill  -RTMIN+10 i3blocks

@@ -210,6 +210,8 @@ autocmd FileType go nmap <buffer> <localleader>lM :GoImport
 autocmd FileType go nmap <buffer> <localleader>lr <Plug>(go-rename)
 autocmd FileType go nmap <buffer> <localleader>ls :GoFillStruct<CR>
 autocmd FileType go nmap <buffer> <localleader>lt <Plug>(go-test)
+autocmd FileType go nmap <buffer> <localleader>lf <Plug>(go-test-func)
+autocmd FileType go nmap <buffer> <localleader>lT <Plug>(go-test-compile)
 autocmd FileType go nmap <buffer> <localleader>lu <Plug>(go-referrers)
 autocmd FileType go nmap <buffer> <localleader>lx <Plug>(go-run)
 
