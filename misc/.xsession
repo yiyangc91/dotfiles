@@ -5,7 +5,7 @@
 # sees that it's already running the notifier and doesn't lock the screen,
 # but the cycle never triggers to lock the screen because the screen is off...
 xset dpms 240 240 240
-xset s 230 5
+xset s 220 15
 
 /usr/bin/dunst &
 /usr/bin/nm-applet &
