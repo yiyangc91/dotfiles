@@ -1,8 +1,8 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.42 for ychen on Tue Apr 30 18:12:18 2019.
+# Written by xscreensaver-demo 5.42 for yiyang on Thu May  2 00:14:40 2019.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	0:03:00
+timeout:	0:04:00
 cycle:		0:01:00
 lock:		True
 lockTimeout:	0:00:00
@@ -26,16 +26,16 @@ ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
 dpmsEnabled:	True
 dpmsQuickOff:	False
-dpmsStandby:	0:05:00
-dpmsSuspend:	0:05:00
-dpmsOff:	0:05:00
+dpmsStandby:	0:08:00
+dpmsSuspend:	0:08:00
+dpmsOff:	0:08:00
 grabDesktopImages:  True
 grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	
 
 mode:		one
-selected:	148
+selected:	61
 
 textMode:	file
 textLiteral:	XScreenSaver
@@ -105,7 +105,7 @@ programs:								      \
 				flow -root				    \n\
   GL: 				glplanet -root				    \n\
 				interference -root			    \n\
-				kumppa -root				    \n\
+				kumppa -root -speed 0.1434		    \n\
   GL: 				lament -root				    \n\
 				moire2 -root				    \n\
   GL: 				sonar -root				    \n\
