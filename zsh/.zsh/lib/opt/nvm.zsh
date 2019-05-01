@@ -1,4 +1,4 @@
-if (( $+commands[nvm] )); then
+if [[ -f "$HOME/.nvm/nvm.sh" ]]; then
    lazy_load load_nvm nvm
 
    function load_nvm() {
