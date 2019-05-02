@@ -23,6 +23,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'ledger/vim-ledger'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
+Plug 'vimwiki/vimwiki'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -155,7 +156,6 @@ noremap <silent> ]L :llast<CR>
 noremap <silent> [L :lfirst<CR>
 
 nnoremap <silent> <leader>m :marks<CR>
-nnoremap <silent> <leader>w :w<CR>
 
 inoremap <C-u> <C-g>u<C-u>
 
