@@ -17,7 +17,7 @@ Plug 'romainl/Apprentice'
 " Behaviour Changing Plugins
 " Plug 'scrooloose/syntastic' " syntax checking
 Plug 'tpope/vim-commentary' " gcc for fast commenting
-Plug 'junegunn/fzf', { 'dir': '~/bin/fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'ledger/vim-ledger'
