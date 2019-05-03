@@ -9,6 +9,7 @@
 # xset s 220 15
 
 # remap caps-lock because nobody needs it
+compton -b
 setxkbmap -option caps:super
 
 /usr/bin/dunst &

@@ -225,7 +225,7 @@ bar {
 client.focused          $blue        $darkblue   $foreground $green
 client.focused_inactive $grey01      $grey02     $foreground $grey03
 client.unfocused        $grey001     $grey01     $grey03     $grey02
-client.urgent           $orange      $lightred   $foreground $red
+client.urgent           $orange      $red        $foreground $orange
 
 client.background       $white
 
