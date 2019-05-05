@@ -22,6 +22,8 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 bindkey -M viins "^A" _next_tags
+bindkey -M viins "^P" up-line-or-history
+bindkey -M viins "^N" down-line-or-history
 
 bindkey -sM vicmd '^[' '^G' # Rebind ESC to Bell in cmd mode
 bindkey -rM viins '^X' # Unbind self-insert to allow the other ^X binds to work

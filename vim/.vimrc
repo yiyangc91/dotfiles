@@ -44,7 +44,8 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeChDirMode=0
+let NERDTreeChDirMode=0 " My nerdtree open file thing breaks
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -54,10 +55,20 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 
+let g:vimwiki_map_prefix = '<leader>e' " <leader>w for me is write file, soz.
+let g:vimwiki_list = [{'path':'~/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_autowriteall = 0 " super annoying
 
-" Auto Close
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" The following vimwiki configurations unfuck the keybindings
+" I swapped header shifting to _ and + instead of - and =
+" I swapped normalize link to = instead of +
+" I *ALWAYS* bind _ to RemoveHeaderLevel otherwise VimWiki fucks my '-' bind
+nmap _ <Plug>VimwikiRemoveHeaderLevel
+autocmd FileType vimwiki nmap <buffer> = <Plug>VimwikiNormalizeLink
+autocmd FileType vimwiki vmap <buffer> = <Plug>VimwikiNormalizeLinkVisual
+autocmd FileType vimwiki nmap <buffer> + <Plug>VimwikiAddHeaderLevel
 
+" Syntax and numbering
 syntax on
 set number
 set relativenumber
@@ -135,10 +146,13 @@ set incsearch
 let mapleader=" "
 let maplocalleader=" "
 
+"" Most important keybindings. These are as short as possible.
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+noremap <leader>w :w<CR>
+noremap <leader>q :q<CR>
 
 noremap <silent> \q :cclose<CR>
 noremap <silent> ]q :cn<CR>
@@ -160,8 +174,7 @@ nnoremap <silent> <leader>m :marks<CR>
 inoremap <C-u> <C-g>u<C-u>
 
 " NERDTree Bindings
-" Use dirvish bindings for NERDTree
-nnoremap <silent> <expr> - g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+nnoremap <silent> <expr> - g:NERDTree.IsOpen() ? "\:NERDTreeToggle<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
 
 " FZF bindings
 nnoremap <leader>s :Rg 
@@ -179,7 +192,7 @@ nnoremap <leader>oh :setlocal hlsearch! hlsearch?<CR>
 nnoremap <leader>os :setlocal spell! spell?<CR>
 nnoremap <leader>ow :setlocal wrap! wrap?<CR>
 nnoremap <leader>op :setlocal paste! paste?<CR>
-nnoremap <silent> <leader><CR> :nohlsearch<CR>
+nnoremap <silent> <leader>n :nohlsearch<CR>
 
 
 " Filetype specific commands
