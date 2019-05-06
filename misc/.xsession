@@ -12,8 +12,9 @@
 compton -b
 setxkbmap -option caps:super
 
-/usr/bin/dunst &
-/usr/bin/nm-applet &
+dunst &
+nm-applet &
+parcellite &
 
 # xss-lock -n $HOME/bin/scripts/dim-screen.sh -- i3lock -n -c 000000 -i $HOME/.config/i3lock/wall.png &
 xss-lock -- $HOME/bin/scripts/lock.sh &

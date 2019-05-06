@@ -174,7 +174,7 @@ nnoremap <silent> <leader>m :marks<CR>
 inoremap <C-u> <C-g>u<C-u>
 
 " NERDTree Bindings
-nnoremap <silent> <expr> _ g:NERDTree.IsOpen() ? "\:NERDTreeToggle<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
+nnoremap <silent> <expr> + g:NERDTree.IsOpen() ? "\:NERDTreeToggle<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
 nnoremap <silent> - :NERDTreeToggle<CR>
 
 " FZF bindings
