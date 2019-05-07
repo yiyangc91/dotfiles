@@ -154,6 +154,10 @@ noremap <C-l> <C-w>l
 noremap <leader>w :w<CR>
 noremap <leader>q :q<CR>
 
+"" Command mode bindings
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 noremap <silent> \q :cclose<CR>
 noremap <silent> ]q :cn<CR>
 noremap <silent> [q :cp<CR>
@@ -182,8 +186,9 @@ nnoremap <leader>s :Rg
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>/ :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
-nnoremap <silent> <leader>v :History<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> <leader>c :Files <C-R>=expand('%:h')<CR><CR>
 
 " Option toggles
 nnoremap <leader>ol :setlocal list! list?<CR>
