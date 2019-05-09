@@ -24,6 +24,7 @@ Plug 'ledger/vim-ledger'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
+Plug 'Valloric/YouCompleteMe'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -116,7 +117,7 @@ set backspace=indent,eol,start   " allows backspace over anything. default in vi
 
 " Insert Mode
 set nrformats-=octal             " excludes octal numbers for ^A and ^X. default in vim
-set completeopt=menuone,longest  " always displays the menu, even for a single completion, and fill out the longest common word
+set completeopt=menuone,preview  " always displays the menu, even for a single completion, and fill out the longest common word
 
 " Command Mode
 set wildmenu                     " this enables command mode autocompletion menu
@@ -182,13 +183,16 @@ nnoremap <silent> <expr> + g:NERDTree.IsOpen() ? "\:NERDTreeToggle<CR>" : bufexi
 nnoremap <silent> - :NERDTreeToggle<CR>
 
 " FZF bindings
+"" rebinding of ^p and ^n because those were the same as jk
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-n> :Files <C-R>=expand('%:h')<CR><CR>
+
+"" s search, b buffers, / find current file, h history
 nnoremap <leader>s :Rg 
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>/ :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
 nnoremap <silent> <leader>h :History<CR>
-nnoremap <silent> <leader>p :Files<CR>
-nnoremap <silent> <leader>c :Files <C-R>=expand('%:h')<CR><CR>
 
 " Option toggles
 nnoremap <leader>ol :setlocal list! list?<CR>
