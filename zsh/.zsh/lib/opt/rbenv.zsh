@@ -1,3 +1,13 @@
+if (( $+commands[rbenv] )); then
+   lazy_load load_rbenv rbenv
+
+   function load_rbenv() {
+      eval "$(rbenv init -)"
+   }
+
+   alias res='rbenv shell'
+fi
+
 function rbenv_prompt_info(){
    if type rbenv &> /dev/null; then
       # the next two lines were shamelessly taken from oh-my-zsh
