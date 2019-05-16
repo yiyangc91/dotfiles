@@ -16,7 +16,7 @@ function rbenv_prompt_info(){
 
       if [[ -n $current_gemset ]]; then
          echo "[%F{yellow}rbenv%f/%F{cyan}$current_ruby%f/%F{magenta}$current_gemset%f]"
-      elif [[ $current_ruby != system ]]; then
+      elif [[ $current_ruby != system && -n $current_ruby ]]; then
          echo "[%F{yellow}rbenv%f/%f%F{cyan}$current_ruby%f]"
       fi
    fi

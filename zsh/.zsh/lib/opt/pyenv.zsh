@@ -29,7 +29,7 @@ function pyenv_prompt_info() {
    if type pyenv &> /dev/null; then
       local current_python=$PYENV_VERSION
 
-      if [[ $current_python != system && ! -z $current_python ]]; then
+      if [[ $current_python != system && -n $current_python ]]; then
          echo "[%F{yellow}pyenv%f/%f%F{cyan}$current_python%f]"
       fi
    fi
