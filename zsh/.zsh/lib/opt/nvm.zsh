@@ -10,9 +10,10 @@ fi
 
 function nvm_prompt_info() {
    if type nvm &> /dev/null; then
-      local current_node=$(nvm version)
+      local current_node=${NVM_BIN%/bin}
+      current_node=${current_node##*/}
 
-      if [[ $current_node != system ]]; then
+      if [[ $current_node != system && -n $current_node ]]; then
          echo "[%F{yellow}nvm%f/%f%F{cyan}$current_node%f]"
       fi
    fi

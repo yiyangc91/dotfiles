@@ -10,10 +10,14 @@ if (( $+commands[pyenv] )); then
       fi
    done
 
-   eval "$(pyenv init - zsh)"
-   if (( $+commands[pyenv-virtualenv-init] )); then
-      eval "$(pyenv virtualenv-init - zsh)"
-   fi
+   lazy_load load_pyenv pyenv
+
+   function load_pyenv() {
+      eval "$(pyenv init - zsh)"
+      if (( $+commands[pyenv-virtualenv-init] )); then
+         eval "$(pyenv virtualenv-init - zsh)"
+      fi
+   }
 
    alias pes='pyenv shell'
    alias pea='pyenv activate'
@@ -23,9 +27,9 @@ fi
 
 function pyenv_prompt_info() {
    if type pyenv &> /dev/null; then
-      local current_python=$(pyenv version-name)
+      local current_python=$PYENV_VERSION
 
-      if [[ $current_python != system ]]; then
+      if [[ $current_python != system && -n $current_python ]]; then
          echo "[%F{yellow}pyenv%f/%f%F{cyan}$current_python%f]"
       fi
    fi
