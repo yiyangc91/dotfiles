@@ -117,7 +117,7 @@ set backspace=indent,eol,start   " allows backspace over anything. default in vi
 
 " Insert Mode
 set nrformats-=octal             " excludes octal numbers for ^A and ^X. default in vim
-set completeopt=menuone,preview  " always displays the menu, even for a single completion, and fill out the longest common word
+set completeopt=menuone,longest,preview  " always displays the menu, even for a single completion, and fill out the longest common word
 
 " Command Mode
 set wildmenu                     " this enables command mode autocompletion menu
