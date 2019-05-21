@@ -247,7 +247,7 @@ bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increas
 bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrease screen brightness
 
 # locking
-bindsym $mod+Escape exec "$HOME/bin/scripts/lock.sh"
+bindsym $mod+Escape exec "xset s activate"
 
 # screenshots using imagemagick
 bindsym --release Print exec "import -window root $HOME/Pictures/screenshots/$(date --iso-8601=ns).png"
