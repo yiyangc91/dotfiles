@@ -202,9 +202,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
 bar {
-        font pango:monospace 10
+        font pango:sans 10
         status_command i3blocks
-        separator_symbol "〉"
+        separator_symbol " 〉"
 
         # Custom apprentice colorscheme
         colors {
