@@ -1,5 +1,12 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
+# does something. copied from arch.
+systemctl --user import-environment DISPLAY XAUTHORITY
+
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+        dbus-update-activation-environment DISPLAY XAUTHORITY
+fi
+
 # completely shut off the monitor and lock screen after 4 minutes
 # this is staggered - turns out if the cycle ends and dpms starts, xss-lock
 # sees that it's already running the notifier and doesn't lock the screen,
