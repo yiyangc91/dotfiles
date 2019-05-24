@@ -132,6 +132,9 @@ set autoread
 set history=1000
 set undolevels=16384
 set clipboard=unnamed
+if has('unnamedplus')
+  set clipboard=unnamedplus
+endif
 
 " Plugin
 " let g:netrw_liststyle = 3
