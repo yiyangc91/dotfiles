@@ -119,10 +119,11 @@ function load_plugin() {
 
 load_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting.plugin.zsh
 load_plugin https://github.com/zsh-users/zsh-completions.git zsh-completions.plugin.zsh
-_Z_DATA="$_YIYANG_ZSH/.z" 
+export _Z_DATA="$_YIYANG_ZSH/.z" 
 load_plugin https://github.com/rupa/z.git z.sh
 load_plugin https://github.com/molovo/tipz tipz.zsh
 load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
+load_plugin https://github.com/andrewferrier/fzf-z.git fzf-z.plugin.zsh
 
 . "$_YIYANG_ZSH/lib/plugins/zsh-syntax-highlighting.zsh"
 . "$_YIYANG_ZSH/lib/plugins/zsh-autosuggestions.zsh"
