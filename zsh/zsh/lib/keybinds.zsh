@@ -25,8 +25,12 @@ bindkey -M viins "^A" _next_tags
 bindkey -M viins "^P" up-line-or-history
 bindkey -M viins "^N" down-line-or-history
 
-bindkey -sM vicmd '^[' '^G' # Rebind ESC to Bell in cmd mode
+# bindkey -sM vicmd '^[' '^G' # hebind ESC to Bell in cmd mode
 bindkey -rM viins '^X' # Unbind self-insert to allow the other ^X binds to work
+
+# unbind clear screen because it sucks
+bindkey -rM viins '^L'
+bindkey -rM vicmd '^L'
 
 function vi_mode_prompt_info() {
    echo "${${${KEYMAP/vicmd/$1}/(main|viins)/$2}:-$2}"

@@ -143,6 +143,7 @@ load_plugin https://github.com/andrewferrier/fzf-z.git fzf-z.plugin.zsh
 . "$_YIYANG_ZSH/lib/opt/rbenv.zsh"
 . "$_YIYANG_ZSH/lib/opt/virtualenv.zsh"
 . "$_YIYANG_ZSH/lib/opt/virtualenvwrapper.zsh"
+. "$_YIYANG_ZSH/lib/opt/yubikey.zsh"
 
 # Load the prompt last because we might rely on external things
 . "$_YIYANG_ZSH/lib/prompt.zsh"
