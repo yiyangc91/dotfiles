@@ -1,3 +1,14 @@
 # random yubikey things
 
-alias mfa="$HOME/bin/scripts/ykman-oath.sh"
+function ykman_oath() {
+   ykman oath remember-password
+   ykman oath code -s "$@"
+}
+
+function ykman_oath_xclip() {
+   ykman oath remember-password
+   ykman oath code -s "$@" | xclip -in -selection clipboard
+}
+
+alias mfa=ykman_oath
+alias mfax=ykman_oath_xclip
