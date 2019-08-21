@@ -72,11 +72,6 @@ _YIYANG_ZSH_CACHE_DIR="$_YIYANG_ZSH/cache"
 _YIYANG_ZSH_PLUGINS_DIR="$_YIYANG_ZSH/plugins"
 _YIYANG_COMPDUMPFILE="$_YIYANG_ZSH/zcompdump"
 
-# Local ZSH stuff
-if [[ -e "$HOME/.zshlocalrc" ]]; then
-   . "$HOME/.zshlocalrc"
-fi
-
 # Set up a place to dump all my ZSH stuff
 [[ -d "$_YIYANG_ZSH" ]] || mkdir -p "$_YIYANG_ZSH"
 [[ -d "$_YIYANG_ZSH_CACHE_DIR" ]] || mkdir -p "$_YIYANG_ZSH_CACHE_DIR"
@@ -98,11 +93,11 @@ fi
 unsetopt flow_control # disables ^S and ^Q for controlling terminal output
 unsetopt bg_nice # fix for wsl where zsh tries to nice bg processes
 
-# Load libs
-. "$_YIYANG_ZSH/lib/correction.zsh"
-. "$_YIYANG_ZSH/lib/completion.zsh"
-. "$_YIYANG_ZSH/lib/history.zsh"
-. "$_YIYANG_ZSH/lib/keybinds.zsh"
+#==============================================================================
+# Plugin Loading
+#------------------------------------------------------------------------------
+# This section may also end up loading things into fpath, etc, which should
+# be done before compinit. Pray that nothing here depends on compinit.
 
 # Turns out, antigen fucks with completion
 # I've decided to nuke it
@@ -119,14 +114,52 @@ function load_plugin() {
 
 load_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git zsh-syntax-highlighting.plugin.zsh
 load_plugin https://github.com/zsh-users/zsh-completions.git zsh-completions.plugin.zsh
+load_plugin https://github.com/zsh-users/zsh-history-substring-search zsh-history-substring-search.zsh
 export _Z_DATA="$_YIYANG_ZSH/.z" 
 load_plugin https://github.com/rupa/z.git z.sh
 load_plugin https://github.com/molovo/tipz tipz.zsh
 load_plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
 load_plugin https://github.com/andrewferrier/fzf-z.git fzf-z.plugin.zsh
 
+#==============================================================================
+# Local
+#------------------------------------------------------------------------------
+# This is here because:
+# 1. You can add things into the fpath before completion loads
+# 2. It's after all the plugins are loaded and all the vars defined, meaning
+#    they are usable, and we can load even more plugins.
+#
+# Shouldn't really be modifying the prompt or anything - opt to add that into
+# the dot files instead. Probably could define an interface to add shit into
+# the prompt though.
+if [[ -e "$HOME/.zshlocalrc" ]]; then
+   . "$HOME/.zshlocalrc"
+fi
+
+#==============================================================================
+# Core
+#------------------------------------------------------------------------------
+
+# Load completion
+# Nothing can load into fpath after this
+. "$_YIYANG_ZSH/lib/completion.zsh"
+
+# Completion must be loaded before keybindings which depends on menuselect
+. "$_YIYANG_ZSH/lib/keybinds.zsh"
+
+# Other bunch of random options
+. "$_YIYANG_ZSH/lib/history.zsh"
+. "$_YIYANG_ZSH/lib/correction.zsh"
+
+#==============================================================================
+# Additional Settings
+#------------------------------------------------------------------------------
+# Note: NONE of these settings may add things into fpath because it doesn't work
+
+# Plugin specific settings
 . "$_YIYANG_ZSH/lib/plugins/zsh-syntax-highlighting.zsh"
 . "$_YIYANG_ZSH/lib/plugins/zsh-autosuggestions.zsh"
+. "$_YIYANG_ZSH/lib/plugins/zsh-history-substring-search.zsh"
 
 # Things which configure various external tools
 . "$_YIYANG_ZSH/lib/opt/cdr.zsh"
@@ -145,5 +178,8 @@ load_plugin https://github.com/andrewferrier/fzf-z.git fzf-z.plugin.zsh
 . "$_YIYANG_ZSH/lib/opt/virtualenvwrapper.zsh"
 . "$_YIYANG_ZSH/lib/opt/yubikey.zsh"
 
+# ==============================================================
 # Load the prompt last because we might rely on external things
+# --------------------------------------------------------------
 . "$_YIYANG_ZSH/lib/prompt.zsh"
+

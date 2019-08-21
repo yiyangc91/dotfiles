@@ -16,6 +16,7 @@ TRAPWINCH() {
 zmodload zsh/terminfo # Gives us $terminfo for things like $terminfo[kcuu1]
 
 # Keybindings
+# menuselect requires completion to be loaded first
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
