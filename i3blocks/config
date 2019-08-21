@@ -3,6 +3,14 @@ label=⠀
 separator=true
 interval=30
 command=/usr/lib/i3blocks/battery
+instance=0
+
+[battery]
+label=⠀
+separator=true
+interval=30
+command=/usr/lib/i3blocks/battery
+instance=1
 
 [audio]
 label=⠀
@@ -11,6 +19,14 @@ command=/usr/lib/i3blocks/volume
 color=#ff8700
 signal=10
 #min_width=⠀50%
+
+[brightness]
+label=⠀
+separator=true
+interval=10
+command=sleep 0.2; /bin/xbacklight | cut -d. -f1
+color=#AFAF87
+signal=11
 
 #[memory]
 #label=⠀
@@ -28,20 +44,12 @@ signal=10
 #separator=true
 #color=#5FAFAF
 
-[brightness]
-label=⠀
-separator=true
-interval=10
-command=sleep 0.2; /bin/xbacklight | cut -d. -f1
-color=#AFAF87
-signal=11
-
-[temperature]
-label=⠀
-interval=10
-command=/usr/lib/i3blocks/temperature
-color=#af5f5f
-separator=true
+#[temperature]
+#label=⠀
+#interval=10
+#command=/usr/lib/i3blocks/temperature
+#color=#af5f5f
+#separator=true
 
 #[iface]
 #label=⠀
