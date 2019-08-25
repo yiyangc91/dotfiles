@@ -25,7 +25,6 @@ Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe'
-Plug 'joeytwiddle/sexy_scroller.vim'
 Plug 'buztard/vim-rel-jump'
 
 let vimplugins=$HOME."/.vimplugins"

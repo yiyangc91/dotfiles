@@ -1,4 +1,5 @@
 # Stolen from oh-my-zsh's compfix
+# This audits the fpath to ensure there is nothing crazy in there
 autoload -Uz compaudit
 function handle_completion_insecurities() {
   local -aU insecure_dirs
