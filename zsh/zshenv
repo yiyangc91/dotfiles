@@ -5,7 +5,7 @@
 
 # Stolen from profile
 # This helps with dupes
-appendpath () {
+function appendpath () {
     case ":$PATH:" in
         *:"$1":*)
             ;;
@@ -22,8 +22,6 @@ appendpath () {
    export GOPATH="$HOME/go"
    appendpath "$GOPATH/bin"
 }
-
-unset appendpath
 
 # OSX fun + fix the java version
 # Unfuck me later

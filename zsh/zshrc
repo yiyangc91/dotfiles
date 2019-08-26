@@ -64,7 +64,7 @@ function lazy_load_clean() {
 }
 
 #----------------------------------
-# End Lazy Load
+# Variables and folders
 #==================================
 
 _YIYANG_ZSH="$HOME/.zsh"
