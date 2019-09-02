@@ -1,22 +1,44 @@
-! Font Rendering
+!==============================================================================
+! Font rendering
+!------------------------------------------------------------------------------
 Xft.antialias: 1
 Xft.autohint: 1
 Xft.hintstyle: hintslight
 
+!==============================================================================
 ! UXterm
+!------------------------------------------------------------------------------
 xterm.termName: xterm-256color
-xterm*vt100.decTerminalID: 340
+
+! use clipboard for xterm
+xterm*vt100.selectToClipboard: true
+
+! font
 xterm*vt100.renderFont: true
 xterm*vt100.faceName: xft:Source Code Pro
 xterm*vt100.faceSize: 10
+
+! for sixel support
+xterm*vt100.decTerminalID: 340
+xterm*vt100.allowWindowOps      : False
+xterm*vt100.disallowedWindowOps : 1,2,3,4,5,6,7,8,9,11,13,18,19,20,21,GetSelection,SetSelection,SetWinLines,SetXprop
+
+! disable alt+enter for fullscreen
+xterm.omitTranslation: fullscreen
+
+! + and - for resizing text
 xterm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\
   Ctrl <Key> plus: larger-vt-font()
-xterm*vt100.allowWindowOps      : False
-xterm*vt100.disallowedWindowOps : 1,2,3,4,5,6,7,8,9,11,13,18,19,20,21,GetSelection,SetSelection,SetWinLines,SetXprop
-xterm*vt100.eightBitInput: false
 
+! Fix alt and ^H to be not dumb so I can actually ^H in vim
+xterm*vt100.metaSendsEscape: true
+xterm*vt100.backarrowKey: false
+xterm.ttyModes: erase ^?
+
+!==============================================================================
 ! URXVT
+!------------------------------------------------------------------------------
 URxvt.depth: 32
 URxvt.font: xft:Source Code Pro
 URxvt.jumpScroll: true
@@ -28,7 +50,9 @@ URxvt.scrollWithBuffer: true
 URxvt.termName: rxvt-unicode-256color
 URxvt.visualBell: false
 
+!==============================================================================
 ! Apprentice
+!------------------------------------------------------------------------------
 *.foreground: #BCBCBC
 *.background: #262626
 *.color0:     #1C1C1C
