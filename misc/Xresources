@@ -5,6 +5,7 @@ Xft.hintstyle: hintslight
 
 ! UXterm
 xterm.termName: xterm-256color
+xterm*vt100.selectToClipboard: true
 xterm*vt100.decTerminalID: 340
 xterm*vt100.renderFont: true
 xterm*vt100.faceName: xft:Source Code Pro
@@ -15,6 +16,7 @@ xterm.vt100.translations: #override \n\
 xterm*vt100.allowWindowOps      : False
 xterm*vt100.disallowedWindowOps : 1,2,3,4,5,6,7,8,9,11,13,18,19,20,21,GetSelection,SetSelection,SetWinLines,SetXprop
 xterm*vt100.eightBitInput: false
+xterm.omitTranslation: fullscreen
 
 ! URXVT
 URxvt.depth: 32
