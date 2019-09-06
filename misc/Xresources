@@ -10,9 +10,6 @@ Xft.hintstyle: hintslight
 !------------------------------------------------------------------------------
 xterm.termName: xterm-256color
 
-! use clipboard for xterm
-xterm*vt100.selectToClipboard: true
-
 ! font
 xterm*vt100.renderFont: true
 xterm*vt100.faceName: xft:Source Code Pro
@@ -26,10 +23,12 @@ xterm*vt100.disallowedWindowOps : 1,2,3,4,5,6,7,8,9,11,13,18,19,20,21,GetSelecti
 ! disable alt+enter for fullscreen
 xterm.omitTranslation: fullscreen
 
-! + and - for resizing text
+! + and - for resizing text + copy paste
 xterm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\
-  Ctrl <Key> plus: larger-vt-font()
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! Fix alt and ^H to be not dumb so I can actually ^H in vim
 xterm*vt100.metaSendsEscape: true
