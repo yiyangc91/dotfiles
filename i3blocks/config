@@ -2,20 +2,20 @@
 label=⠀
 separator=true
 interval=30
-command=/usr/lib/i3blocks/battery
+command=/usr/lib/i3blocks/battery/battery
 instance=0
 
 [battery]
 label=⠀
 separator=true
 interval=30
-command=/usr/lib/i3blocks/battery
+command=/usr/lib/i3blocks/battery/battery
 instance=1
 
 [audio]
 label=⠀
 interval=once
-command=/usr/lib/i3blocks/volume
+command=/usr/lib/i3blocks/volume/volume
 color=#ff8700
 signal=10
 #min_width=⠀50%
@@ -27,44 +27,6 @@ interval=10
 command=sleep 0.2; /bin/xbacklight | cut -d. -f1
 color=#AFAF87
 signal=11
-
-#[memory]
-#label=⠀
-#separator=false
-#interval=1
-#command=/usr/lib/i3blocks/memory
-#color=#8787AF
-#
-#[cpu_usage]
-#label=⠀
-#command=/usr/lib/i3blocks/cpu_usage
-#interval=1
-#min_width=CPU:00.00%
-#align=center
-#separator=true
-#color=#5FAFAF
-
-#[temperature]
-#label=⠀
-#interval=10
-#command=/usr/lib/i3blocks/temperature
-#color=#af5f5f
-#separator=true
-
-#[iface]
-#label=⠀
-#interval=10
-#command=/usr/lib/i3blocks/iface
-#separator=true
-#color=#87AF87
-
-#[bandwidth]
-#label=⠀
-#interval=5
-#command=/usr/lib/i3blocks/bandwidth
-#color=#8FAFD7
-##min_width=⠀ IN 2.0M OUT 47K
-#align=center
 
 # User indicator
 [user-info]
