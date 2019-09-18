@@ -251,8 +251,8 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -R
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
 # brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10;
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -time 0 -steps 1
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -time 0 -steps 1
 bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increase screen brightness
 bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrease screen brightness
 
