@@ -1,17 +1,28 @@
 # Menu with keys/commands
-typeset -A menu
+typeset -A menu icons
 menu=(
-  ["Shutdown\0icon\x1fsystem-shutdown-symbolic"]="systemctl poweroff"
-  ["Reboot\0icon\x1fsystem-reboot-symbolic"]="systemctl reboot"
-  ["Hibernate\0icon\x1fdrive-harddisk-symbolic"]="systemctl hibernate"
-  ["Suspend\0icon\x1fprocess-stop-symbolic"]="systemctl suspend"
-  ["Lock\0icon\x1fsystem-lock-screen-symbolic"]="xset s activate"
-  ["Logout\0icon\x1fsystem-log-out-symbolic"]="i3-msg exit"
+  [Shutdown]="systemctl poweroff"
+  [Reboot]="systemctl reboot"
+  [Hibernate]="systemctl hibernate"
+  [Suspend]="systemctl suspend"
+  [Lock]="xset s activate"
+  [Logout]="i3-msg exit"
+)
+icons=(
+  [Shutdown]="\0icon\x1fsystem-shutdown-symbolic"
+  [Reboot]="\0icon\x1fsystem-reboot-symbolic"
+  [Hibernate]="\0icon\x1fdrive-harddisk-symbolic"
+  [Suspend]="\0icon\x1fprocess-stop-symbolic"
+  [Lock]="\0icon\x1fsystem-lock-screen-symbolic"
+  [Logout]="\0icon\x1fsystem-log-out-symbolic"
 )
 
 if [ -z $@ ]; then
-   printf '%b\n' "${!menu[@]}" | sort
+   for k in "${!menu[@]}"; do
+      echo -e "$k${icons[${k}]}"
+   done
 else
    selection=$@
+   echo "$selection"
    i3-msg -q "exec ${menu[${selection}]}"
 fi
