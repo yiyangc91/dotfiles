@@ -23,6 +23,5 @@ if [ -z $@ ]; then
    done
 else
    selection=$@
-   echo "$selection"
    i3-msg -q "exec ${menu[${selection}]}"
 fi
