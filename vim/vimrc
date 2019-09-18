@@ -146,6 +146,8 @@ let g:dirvish_relative_paths = 0
 " Searching
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 " Keybindings
 let mapleader=" "

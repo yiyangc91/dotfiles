@@ -1,80 +1,22 @@
-[battery]
-label=⠀
-separator=true
+[batterybar]
+command=$HOME/bin/scripts/i3blocks-contrib/battery2/battery2
 interval=30
-command=/usr/lib/i3blocks/battery
-instance=0
+markup=pango
 
-[battery]
-label=⠀
-separator=true
-interval=30
-command=/usr/lib/i3blocks/battery
-instance=1
-
-[audio]
-label=⠀
+[volume-pulseaudio]
+command=$HOME/bin/scripts/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio -C '#ff8700' -c '#6c6c6c'
 interval=once
-command=/usr/lib/i3blocks/volume
-color=#ff8700
 signal=10
-#min_width=⠀50%
 
 [brightness]
-label=⠀
-separator=true
+label=
 interval=10
-command=sleep 0.2; /bin/xbacklight | cut -d. -f1
-color=#AFAF87
+command=$HOME/bin/scripts/i3blocks/backlight
 signal=11
 
-#[memory]
-#label=⠀
-#separator=false
-#interval=1
-#command=/usr/lib/i3blocks/memory
-#color=#8787AF
-#
-#[cpu_usage]
-#label=⠀
-#command=/usr/lib/i3blocks/cpu_usage
-#interval=1
-#min_width=CPU:00.00%
-#align=center
-#separator=true
-#color=#5FAFAF
-
-#[temperature]
-#label=⠀
-#interval=10
-#command=/usr/lib/i3blocks/temperature
-#color=#af5f5f
-#separator=true
-
-#[iface]
-#label=⠀
-#interval=10
-#command=/usr/lib/i3blocks/iface
-#separator=true
-#color=#87AF87
-
-#[bandwidth]
-#label=⠀
-#interval=5
-#command=/usr/lib/i3blocks/bandwidth
-#color=#8FAFD7
-##min_width=⠀ IN 2.0M OUT 47K
-#align=center
-
-# User indicator
-[user-info]
-label=⠀
-command=echo '{"full_text": "'$(id -un)@$(hostname)'", "color": "'$(cat $HOME/.i3-user-color)'"}'
-interval=600
-format=json
-
 [time]
-command= date '+%d/%m/%Y %H:%M'
-label=⠀
-interval=10
+command=$HOME/bin/scripts/i3blocks-contrib/time/time
+interval=1
 color=#BCBCBC
+label= 
+STRFTIME_FORMAT=%Y-%m-%d %H:%M:%S

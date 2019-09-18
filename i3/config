@@ -68,7 +68,9 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -nf #bcbcbc -nb #262626 -sb #375f87 -sf #bcbcbc -fn monospace-10'"
+bindsym $mod+d exec "rofi -show drun"
+bindsym $mod+Tab exec "rofi -show window"
+bindsym $mod+Escape exec "rofi -show system"
 
 # change focus
 # This has been rebinded to match vim's keybinds
@@ -204,7 +206,7 @@ bindsym $mod+r mode "resize"
 bar {
         font pango:sans 10
         status_command i3blocks
-        separator_symbol " 〉"
+        separator_symbol "〉"
 
         # Custom apprentice colorscheme
         colors {
@@ -241,18 +243,18 @@ for_window [class="^GNU Octave$" title="^Figure"] floating enable
 
 
 # sound
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%;  exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%; exec pkill  -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle; exec pkill  -RTMIN+10 i3blocks
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%;  exec pkill  -RTMIN+10 i3blocks
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%; exec pkill  -RTMIN+10 i3blocks
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle; exec pkill  -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
 # brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10;
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -time 0 -steps 1
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -time 0 -steps 1
 bindsym --release XF86MonBrightnessUp   exec pkill  -RTMIN+11 i3blocks # increase screen brightness
 bindsym --release XF86MonBrightnessDown exec pkill  -RTMIN+11 i3blocks  # decrease screen brightness
-
-# locking
-bindsym $mod+Escape exec "xset s activate"
 
 # screenshots using imagemagick
 bindsym --release Print exec "import -window root $HOME/Pictures/screenshots/$(date --iso-8601=ns).png"
