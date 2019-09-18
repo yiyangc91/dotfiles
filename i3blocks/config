@@ -20,5 +20,3 @@ interval=1
 color=#BCBCBC
 label= 
 STRFTIME_FORMAT=%Y-%m-%d %H:%M:%S
-TZONES=$DEFAULT_TZ,UTC
-TZ_LABELS=,UTC
