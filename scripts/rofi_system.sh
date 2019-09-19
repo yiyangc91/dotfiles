@@ -7,19 +7,21 @@ menu=(
   [Suspend]="systemctl suspend"
   [Lock]="xset s activate"
   [Logout]="i3-msg exit"
+  [Monitor Setup]="rofi -modi monitor:bin/scripts/rofi_monitor_layout.sh -show monitor -p 'Monitor Setup:'"
 )
 icons=(
-  [Shutdown]="\0icon\x1fsystem-shutdown-symbolic"
-  [Reboot]="\0icon\x1fsystem-reboot-symbolic"
-  [Hibernate]="\0icon\x1fdrive-harddisk-symbolic"
-  [Suspend]="\0icon\x1fprocess-stop-symbolic"
-  [Lock]="\0icon\x1fsystem-lock-screen-symbolic"
-  [Logout]="\0icon\x1fsystem-log-out-symbolic"
+  [Shutdown]="system-shutdown-symbolic"
+  [Reboot]="system-reboot-symbolic"
+  [Hibernate]="drive-harddisk-symbolic"
+  [Suspend]="process-stop-symbolic"
+  [Lock]="system-lock-screen-symbolic"
+  [Logout]="system-log-out-symbolic"
+  [Monitor Setup]="video-display-symbolic"
 )
 
 if [ -z $@ ]; then
    for k in "${!menu[@]}"; do
-      echo -e "$k${icons[${k}]}"
+      echo -e "$k\0icon\x1f${icons[${k}]}"
    done
 else
    selection=$@
