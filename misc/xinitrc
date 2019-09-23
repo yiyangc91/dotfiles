@@ -23,7 +23,6 @@ autorandr -c
 compton -b
 setxkbmap -option caps:super
 
-dunst &
 nm-applet &
 parcellite &
 
