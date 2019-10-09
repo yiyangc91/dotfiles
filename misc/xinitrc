@@ -24,7 +24,6 @@ compton -b
 setxkbmap -option caps:super
 dunst  &
 nm-applet &
-parcellite &
 redshift-gtk &
 
 # xss-lock -n $HOME/bin/scripts/dim-screen.sh -- i3lock -n -c 000000 -i $HOME/.config/i3lock/wall.png &
