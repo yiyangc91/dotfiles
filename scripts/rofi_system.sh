@@ -7,7 +7,7 @@ menu=(
   [Suspend]="systemctl suspend"
   [Lock]="xset s activate"
   [Logout]="i3-msg exit"
-  [Monitor Setup]="rofi -modi monitor:bin/scripts/rofi_monitor_layout.sh -show monitor -p 'Monitor Setup:'"
+  [Monitor Setup]="rofi -modi monitor:$HOME/bin/scripts/rofi_monitor_layout.sh -show monitor -p 'Monitor Setup:'"
 )
 icons=(
   [Shutdown]="system-shutdown-symbolic"

@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,drun,system:bin/scripts/rofi_system.sh,combi";
+	modi: "window,drun,system:~/bin/scripts/rofi_system.sh,combi";
 	combi-modi: "window,drun,system";
 	dpi: 0;
 
