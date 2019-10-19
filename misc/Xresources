@@ -39,13 +39,31 @@ xterm.ttyModes: erase ^?
 ! URXVT
 !------------------------------------------------------------------------------
 URxvt.depth: 32
-URxvt.font: xft:Source Code Pro
+URxvt.font: xft:Source Code Pro:size=10
+
+! Faster scrolling
 URxvt.jumpScroll: true
+
+! Save more history
 URxvt.saveLines: 16384
+
+! Disable the scrollbar
 URxvt.scrollBar: false
+
+! By default, when shell output appears the scrollback view will automatically jump to the bottom of the buffer to display new output. 
+! This changes it to not do that.
 URxvt.scrollTtyKeypress: true
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
+
+! Disable perl extensions for speed and security
+URxvt.perl-ext:
+URxvt.perl-ext-common:
+
+! Disable KEYCAP PICTURE INSERT MODE and ISO14755 on Ctrl+Shift (seriously?)
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 URxvt.termName: rxvt-unicode-256color
 URxvt.visualBell: false
 
