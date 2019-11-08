@@ -1,6 +1,0 @@
-[submodule "scripts/i3blocks-contrib"]
-	path = scripts/i3blocks-contrib
-	url = git@github.com:yiyangc91/i3blocks-contrib.git
-[submodule "st"]
-	path = st
-	url = git@github.com:yiyangc91/st.git

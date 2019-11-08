@@ -1,10 +1,10 @@
 [batterybar]
-command=$HOME/bin/scripts/i3blocks-contrib/battery2/battery2
+command=/usr/lib/i3blocks/battery2/battery2
 interval=30
 markup=pango
 
 [volume-pulseaudio]
-command=$HOME/bin/scripts/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio -C '#ff8700' -c '#6c6c6c'
+command=/usr/lib/i3blocks/volume-pulseaudio/volume-pulseaudio -C '#ff8700' -c '#6c6c6c'
 interval=once
 signal=10
 
@@ -15,8 +15,8 @@ command=$HOME/bin/scripts/i3blocks/backlight
 signal=11
 
 [time]
-command=$HOME/bin/scripts/i3blocks-contrib/time/time
+instance=%Y-%m-%d %H:%M:%S
+command=/usr/lib/i3blocks/time/time
 interval=1
 color=#BCBCBC
 label= 
-STRFTIME_FORMAT=%Y-%m-%d %H:%M:%S
