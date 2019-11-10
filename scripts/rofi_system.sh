@@ -6,7 +6,6 @@ menu=(
   [Hibernate]="systemctl hibernate"
   [Suspend]="systemctl suspend"
   [Lock]="xset s activate"
-  [Logout]="i3-msg exit"
   [Monitor Setup]="rofi -modi monitor:$HOME/bin/scripts/rofi_monitor_layout.sh -show monitor -p 'Monitor Setup:'"
 )
 icons=(
@@ -15,7 +14,6 @@ icons=(
   [Hibernate]="drive-harddisk-symbolic"
   [Suspend]="process-stop-symbolic"
   [Lock]="system-lock-screen-symbolic"
-  [Logout]="system-log-out-symbolic"
   [Monitor Setup]="video-display-symbolic"
 )
 
@@ -25,5 +23,5 @@ if [ -z $@ ]; then
    done
 else
    selection=$@
-   i3-msg -q "exec ${menu[${selection}]}"
+   ${menu[${selection}]}
 fi
