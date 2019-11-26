@@ -29,4 +29,4 @@ redshift-gtk &
 # xss-lock -n $HOME/bin/scripts/dim-screen.sh -- i3lock -n -c 000000 -i $HOME/.config/i3lock/wall.png &
 xss-lock -n /usr/lib/xsecurelock/dimmer -l -- $HOME/bin/scripts/lock.sh &
 
-exec /usr/bin/awesome
+exec /usr/bin/i3
