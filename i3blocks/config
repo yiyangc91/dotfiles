@@ -15,7 +15,7 @@ command=$HOME/bin/scripts/i3blocks/backlight
 signal=11
 
 [time]
-command=date
+command=date '+%Y-%m-%d %H:%M:%S'
 interval=1
 color=#BCBCBC
 label= 
