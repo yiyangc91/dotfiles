@@ -36,7 +36,15 @@ function _construct_right_prompt {
 }
 
 function _construct_left_prompt {
-   local vimode=$(vi_mode_prompt_info "%F{white}%B*%b%f" "%F{white}%(!.#.%%)%f")
+   local insert_icon='%F{white}%%%f'
+   local insert_icon_root='%F{white}#%f'
+   local command_icon='%F{white}%B⭑%b%f'
+   if [[ -z "$HISTFILE" ]]; then
+      insert_icon='%F{red}⏾%f'
+      insert_icon_root='%F{red}#%f'
+      command_icon='%F{red}⭑%f'
+   fi
+   local vimode=$(vi_mode_prompt_info "${command_icon}" "%(!.${insert_icon_root}.${insert_icon})")
 
    echo "%F{yellow}%n%f@%F{magenta}%m%f %F{blue}%(4~:.../:)%3~%f%(1j.%F{red}&.)${vimode} "
 }
