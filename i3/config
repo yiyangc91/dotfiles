@@ -237,8 +237,10 @@ assign [class="^Thunderbird$"] $ws3
 assign [class="jetbrains-idea"] $ws4
 
 for_window [class="^Firefox$"] border none, layout stacking
+for_window [class="^Firefox$" title="^Activate Security Key"] floating enable
 for_window [class="^Thunderbird$" instance="Calendar"] floating enable
 for_window [class="^GNU Octave$" title="^Figure"] floating enable
+for_window [class="^Pavucontrol$"] floating enable
 
 
 # sound
