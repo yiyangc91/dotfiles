@@ -12,7 +12,7 @@ xterm.termName: xterm-256color
 
 ! font
 xterm*vt100.renderFont: true
-xterm*vt100.faceName: xft:Source Code Pro
+xterm*vt100.faceName: xft:monospace
 xterm*vt100.faceSize: 10
 
 ! for sixel support
@@ -39,7 +39,7 @@ xterm.ttyModes: erase ^?
 ! URXVT
 !------------------------------------------------------------------------------
 URxvt.depth: 32
-URxvt.font: xft:Source Code Pro:size=10
+URxvt.font: xft:monospace:size=10
 
 ! Faster scrolling
 URxvt.jumpScroll: true
@@ -66,11 +66,6 @@ URxvt.iso14755_52: false
 
 URxvt.termName: rxvt-unicode-256color
 URxvt.visualBell: false
-
-!==============================================================================
-! ST
-!------------------------------------------------------------------------------
-st.font: Source Code Pro:size=10:antialias=true:autohint=true
 
 !==============================================================================
 ! Apprentice
