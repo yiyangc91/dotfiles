@@ -1,7 +1,10 @@
 # Override the default key bindings
 
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+if [[ -n "$terminfo[kcuu1]" ]]; then
+   bindkey "$terminfo[kcuu1]" history-substring-search-up
+   bindkey "$terminfo[kcud1]" history-substring-search-down
+fi
+
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
