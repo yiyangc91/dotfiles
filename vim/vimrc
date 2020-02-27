@@ -254,3 +254,9 @@ autocmd FileType ledger nnoremap <buffer> <silent> <C-t> :call ledger#entry()<CR
 
 " Color
 colorscheme apprentice
+
+" External untracked vimrcs
+let localrc=expand("~/.vimlocalrc")
+if filereadable(localrc)
+  execute "source " . localrc
+endif
