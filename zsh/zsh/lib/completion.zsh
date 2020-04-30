@@ -26,6 +26,8 @@ setopt always_to_end # move cursor to the end afterwards
 
 autoload -Uz compinit
 compinit -d "$_YIYANG_COMPDUMPFILE"
+autoload -Uz bashcompinit
+bashcompinit -i
 
 # Completion Quick Reference
 # :completion:<function>:<completer>:<command>:<argument>:<tag>

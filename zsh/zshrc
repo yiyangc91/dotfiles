@@ -128,10 +128,8 @@ load_plugin https://github.com/andrewferrier/fzf-z.git fzf-z.plugin.zsh
 # 1. You can add things into the fpath before completion loads
 # 2. It's after all the plugins are loaded and all the vars defined, meaning
 #    they are usable, and we can load even more plugins.
-#
-# Shouldn't really be modifying the prompt or anything - opt to add that into
-# the dot files instead. Probably could define an interface to add shit into
-# the prompt though.
+# 3. Custom prompt hooks exist - use `custom_right_prompt`.
+
 if [[ -e "$HOME/.zshlocalrc" ]]; then
    . "$HOME/.zshlocalrc"
 fi
@@ -143,6 +141,20 @@ fi
 # Load completion
 # Nothing can load into fpath after this
 . "$_YIYANG_ZSH/lib/completion.zsh"
+
+# load zsh completions
+fpath=($fpath "$LOCAL_ADMIN_SCRIPTS/zsh-completion")
+for f in \
+  arcanist \
+  bistrocli \
+  fbconfig \
+  fbmake \
+  mlcli \
+  mlsweeper \
+  smcc \
+; do
+  source "$LOCAL_ADMIN_SCRIPTS/bash-completion/$f"
+done
 
 # Completion must be loaded before keybindings which depends on menuselect
 . "$_YIYANG_ZSH/lib/keybinds.zsh"

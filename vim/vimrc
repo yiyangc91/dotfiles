@@ -21,7 +21,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'ledger/vim-ledger'
-Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
 "Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe'
@@ -35,7 +34,10 @@ endif
 call plug#end()
 
 " Plugin Configuration
-packadd! matchit
+packadd! matchit - not compatible with older versions of vim
+ 
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 4
 
 " iTerm2 cursor funkyness
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -199,6 +201,14 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>/ :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
 nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>t :Tags<CR>
+nnoremap <silent> <leader>] :BTags<CR>
+
+" ycm go to definition
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
 " Option toggles
 nnoremap <leader>ol :setlocal list! list?<CR>
