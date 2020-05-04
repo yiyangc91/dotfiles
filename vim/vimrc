@@ -22,9 +22,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'ledger/vim-ledger'
 Plug 'scrooloose/nerdtree'
-"Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe'
 Plug 'buztard/vim-rel-jump'
+Plug 'lyuts/vim-rtags'
+Plug 'dense-analysis/ale'
+Plug 'mhinz/vim-signify'
+Plug 'will133/vim-dirdiff'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -204,12 +207,6 @@ nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>t :Tags<CR>
 nnoremap <silent> <leader>] :BTags<CR>
 
-" ycm go to definition
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
-
 " Option toggles
 nnoremap <leader>ol :setlocal list! list?<CR>
 nnoremap <leader>on :setlocal number! number?<CR>
@@ -220,6 +217,9 @@ nnoremap <leader>ow :setlocal wrap! wrap?<CR>
 nnoremap <leader>op :setlocal paste! paste?<CR>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 
+" Signify
+nnoremap <leader>hd :SignifyHunkDiff<CR>
+nnoremap <leader>hu :SignifyHunkUndo<CR>
 
 " Filetype specific commands
 autocmd BufNewFile,BufRead *.journal setlocal filetype=ledger
