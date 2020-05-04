@@ -142,20 +142,6 @@ fi
 # Nothing can load into fpath after this
 . "$_YIYANG_ZSH/lib/completion.zsh"
 
-# load zsh completions
-fpath=($fpath "$LOCAL_ADMIN_SCRIPTS/zsh-completion")
-for f in \
-  arcanist \
-  bistrocli \
-  fbconfig \
-  fbmake \
-  mlcli \
-  mlsweeper \
-  smcc \
-; do
-  source "$LOCAL_ADMIN_SCRIPTS/bash-completion/$f"
-done
-
 # Completion must be loaded before keybindings which depends on menuselect
 . "$_YIYANG_ZSH/lib/keybinds.zsh"
 

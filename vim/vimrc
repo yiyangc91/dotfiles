@@ -25,6 +25,8 @@ Plug 'scrooloose/nerdtree'
 "Plug 'vimwiki/vimwiki'
 Plug 'Valloric/YouCompleteMe'
 Plug 'buztard/vim-rel-jump'
+Plug 'dense-analysis/ale'
+Plug 'lyuts/vim-rtags'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
@@ -34,10 +36,25 @@ endif
 call plug#end()
 
 " Plugin Configuration
-packadd! matchit - not compatible with older versions of vim
+packadd! matchit
  
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_identifier_candidate_chars = 4
+"let g:ale_linters = {'cpp': ['clangtidy', 'cpplint']}
+"let g:ale_cpp_clangtidy_checks = [
+"  \'-bugprone-branch-clone',
+"  \'-bugprone-signed-char-misuse',
+"  \'-bugprone-unhandled-self-assignment',
+"  \'-clang-diagnostic-implicit-int-float-conversion',
+"  \'-modernize-use-auto',
+"  \'-modernize-use-trailing-return-type',
+"  \'-readability-convert-member-functions-to-static',
+"  \'-readability-make-member-function-const',
+"  \'-readability-qualified-auto',
+"  \'-readability-redundant-access-specifiers'
+"  \]
+"let g:ale_fixers = {'cpp': ['clang-format']}
+"let g:ale_fix_on_save = 1
+
+let g:rtagsUseDefaultMappings = 0
 
 " iTerm2 cursor funkyness
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -198,17 +215,11 @@ nnoremap <silent> <C-n> :Files <C-R>=expand('%:h')<CR><CR>
 "" s search, b buffers, / find current file, h history
 nnoremap <leader>s :Rg 
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>/ :BLines<CR>
+nnoremap <silent> <leader>F :BLines<CR>
 nnoremap <silent> <leader>f :Lines<CR>
 nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>t :Tags<CR>
-nnoremap <silent> <leader>] :BTags<CR>
-
-" ycm go to definition
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> <leader>T :BTags<CR>
 
 " Option toggles
 nnoremap <leader>ol :setlocal list! list?<CR>
@@ -230,6 +241,29 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+
+autocmd FileType cpp setlocal noexpandtab shiftwidth=2 tabstop=2
+autocmd FileType cpp nmap <buffer> <Leader>li :call rtags#SymbolInfo()<CR>
+autocmd FileType cpp nmap <buffer> <C-]> :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lj :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lJ :call rtags#JumpTo(g:SAME_WINDOW, { '--declaration-only' : '' })<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lS :call rtags#JumpTo(g:H_SPLIT)<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lV :call rtags#JumpTo(g:V_SPLIT)<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lT :call rtags#JumpTo(g:NEW_TAB)<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lp :call rtags#JumpToParent()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lf :call rtags#FindRefs()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lF :call rtags#FindRefsCallTree()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>ln :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
+autocmd FileType cpp nmap <buffer> <Leader>ls :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lr :call rtags#ReindexFile()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>ll :call rtags#ProjectList()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lw :call rtags#RenameSymbolUnderCursor()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lv :call rtags#FindVirtuals()<CR>
+autocmd FileType cpp nmap <buffer> <C-t> :call rtags#JumpBack()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lh :call rtags#ShowHierarchy()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lC :call rtags#FindSuperClasses()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>lc :call rtags#FindSubClasses()<CR>
+autocmd FileType cpp nmap <buffer> <Leader>ld :call rtags#Diagnostics()<CR>
 
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4
 autocmd FileType go nmap <buffer> <localleader>lL <Plug>(go-decls-dir)
