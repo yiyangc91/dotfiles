@@ -19,15 +19,22 @@ Plug 'romainl/Apprentice'
 Plug 'tpope/vim-commentary' " gcc for fast commenting
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'stephpy/vim-yaml'
-Plug 'ledger/vim-ledger'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe'
+
+" This is so 10j 10k etc adds to the jumplist
 Plug 'buztard/vim-rel-jump'
-Plug 'lyuts/vim-rtags'
-Plug 'dense-analysis/ale'
+
+" Make diffing tolerable. Signify in particular also works with hg
+" Consider vim-gitgutter at some point once I stop using hg
 Plug 'mhinz/vim-signify'
 Plug 'will133/vim-dirdiff'
+
+" Vim as a faux-IDE
+Plug 'Valloric/YouCompleteMe'
+Plug 'dense-analysis/ale'
+
+" C++ development with rtags
+Plug 'lyuts/vim-rtags'
 
 let vimplugins=$HOME."/.vimplugins"
 if filereadable(vimplugins)
