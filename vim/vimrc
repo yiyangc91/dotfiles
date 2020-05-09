@@ -14,16 +14,33 @@ call plug#begin()
 " Colorscheme
 Plug 'romainl/Apprentice'
 
-" Behaviour Changing Plugins
-" Plug 'scrooloose/syntastic' " syntax checking
-Plug 'tpope/vim-commentary' " gcc for fast commenting
+" ESSENTIALS: Code navigation outside of vim's built in motions/netrw
+"  FZF - probably the most essential thing here. Ctrl+P or Unite could
+"  maybe replace it. Relied on:
+"   - Ctrl-P functionality to search in current folder OR pwd
+"   - Grepping functionality with ripgrep :Rg
+"   - Fuzzy buffer navigation with :Buffers (instead of unsorted :ls)
+"   - MRU file list with :History
+"   - Tag search with :Tags and :BTags
+"   - File line search with :Lines and :BLines
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
 
-" This is so 10j 10k etc adds to the jumplist
-Plug 'buztard/vim-rel-jump'
-Plug 'dense-analysis/ale'
+"  NERDTree - this is configured not to behave as permanently open sidebar
+"  (which I think is crap), but rather as a temporarily sidebar opened
+"  persistent netrw. Less andd less useful with FZF, but sometimes you just
+"  need a tree view of your files.
+Plug 'scrooloose/nerdtree' " use it like sidebar netrw
+
+"  Vim bookmarks - marks are not gone. But marks are very limiting due to
+"  mental overhead. I don't just want to mark a line, I want to literally drop
+"  an infinite number of bookmarks when I'm browsing code so I can go back to
+"  a function to look at the reference + annotate my bookmarks.
+Plug 'MattesGroeger/vim-bookmarks' 
+
+" NON ESSENTIALS: Makes life easier
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
 " Make diffing tolerable. Signify in particular also works with hg
 " Consider vim-gitgutter at some point once I stop using hg
@@ -31,8 +48,9 @@ Plug 'mhinz/vim-signify'
 Plug 'will133/vim-dirdiff'
 
 " Vim as a faux-IDE
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'dense-analysis/ale'
+Plug 'ludovicchabant/vim-gutentags'
 
 " C++ development with rtags
 Plug 'lyuts/vim-rtags'
@@ -64,6 +82,7 @@ packadd! matchit
 "let g:ale_fix_on_save = 1
 
 let g:rtagsUseDefaultMappings = 0
+let g:bookmark_no_default_key_mappings = 1
 
 " iTerm2 cursor funkyness
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -165,6 +184,9 @@ if has('unnamedplus')
   set clipboard=unnamedplus
 endif
 
+" Tags
+set tags=./tags;,tags;
+
 " Plugin
 " let g:netrw_liststyle = 3
 " let g:netrw_bufsettings='nu relativenumber nobl'
@@ -188,6 +210,16 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <leader>w :w<CR>
 noremap <leader>q :q<CR>
+
+function! VerticalMotion(key)
+  let distance = v:count1
+  if distance >= 2
+	  exec "normal! m'"
+  endif
+  exec "normal! ".distance.a:key
+endfunction
+nnoremap <silent> j :<C-U>call VerticalMotion('j')<CR>
+nnoremap <silent> k :<C-U>call VerticalMotion('k')<CR>
 
 "" Command mode bindings
 cnoremap <C-p> <Up>
@@ -215,6 +247,18 @@ inoremap <C-u> <C-g>u<C-u>
 " NERDTree Bindings
 nnoremap <silent> <expr> + g:NERDTree.IsOpen() ? "\:NERDTreeToggle<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
 nnoremap <silent> - :NERDTreeToggle<CR>
+
+" Bookmarks
+nmap ]b <Plug>BookmarkNext
+nmap [b <Plug>BookmarkPrev
+nmap <Leader><Leader> <Plug>BookmarkToggle
+nmap <Leader>i <Plug>BookmarkAnnotate
+nmap <Leader>a <Plug>BookmarkShowAll
+nmap <Leader>c <Plug>BookmarkClear
+nmap <Leader>x <Plug>BookmarkClearAll
+nmap <Leader>k <Plug>BookmarkMoveUp
+nmap <Leader>j <Plug>BookmarkMoveDown
+nmap <Leader>g <Plug>BookmarkMoveToLine
 
 " FZF bindings
 "" rebinding of ^p and ^n because those were the same as jk
@@ -256,7 +300,6 @@ autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 
 autocmd FileType cpp setlocal noexpandtab shiftwidth=2 tabstop=2
 autocmd FileType cpp nmap <buffer> <Leader>li :call rtags#SymbolInfo()<CR>
-autocmd FileType cpp nmap <buffer> <C-]> :call rtags#JumpTo(g:SAME_WINDOW)<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lj :call rtags#JumpTo(g:SAME_WINDOW)<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lJ :call rtags#JumpTo(g:SAME_WINDOW, { '--declaration-only' : '' })<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lS :call rtags#JumpTo(g:H_SPLIT)<CR>
@@ -271,7 +314,6 @@ autocmd FileType cpp nmap <buffer> <Leader>lr :call rtags#ReindexFile()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>ll :call rtags#ProjectList()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lw :call rtags#RenameSymbolUnderCursor()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lv :call rtags#FindVirtuals()<CR>
-autocmd FileType cpp nmap <buffer> <C-t> :call rtags#JumpBack()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lh :call rtags#ShowHierarchy()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lC :call rtags#FindSuperClasses()<CR>
 autocmd FileType cpp nmap <buffer> <Leader>lc :call rtags#FindSubClasses()<CR>

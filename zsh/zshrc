@@ -155,6 +155,7 @@ fi
 # Note: NONE of these settings may add things into fpath because it doesn't work
 
 # Plugin specific settings
+. "$_YIYANG_ZSH/lib/plugins/fzf-z.zsh"
 . "$_YIYANG_ZSH/lib/plugins/zsh-syntax-highlighting.zsh"
 . "$_YIYANG_ZSH/lib/plugins/zsh-autosuggestions.zsh"
 . "$_YIYANG_ZSH/lib/plugins/zsh-history-substring-search.zsh"
