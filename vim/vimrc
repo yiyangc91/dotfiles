@@ -152,6 +152,7 @@ set statusline+=❮\ %3(%P%)\
 set display+=lastline
 set scrolloff=3
 
+set cursorline
 set colorcolumn=80
 
 set listchars=tab:▸\ ,eol:¬,trail:•,nbsp:⋅
@@ -239,6 +240,10 @@ noremap <silent> ]l :lnext<CR>
 noremap <silent> [l :lprevious<CR>
 noremap <silent> ]L :llast<CR>
 noremap <silent> [L :lfirst<CR>
+noremap <silent> ]f :next<CR>
+noremap <silent> [f :previous<CR>
+noremap <silent> ]F :last<CR>
+noremap <silent> [F :first<CR>
 
 nnoremap <silent> <leader>m :marks<CR>
 
@@ -282,6 +287,7 @@ nnoremap <leader>oh :setlocal hlsearch! hlsearch?<CR>
 nnoremap <leader>os :setlocal spell! spell?<CR>
 nnoremap <leader>ow :setlocal wrap! wrap?<CR>
 nnoremap <leader>op :setlocal paste! paste?<CR>
+nnoremap <leader>oc :setlocal cursorline! cursorline?<CR>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 
 " Signify
