@@ -10,14 +10,15 @@ if (( $+commands[pyenv] )); then
       fi
    done
 
-   lazy_load load_pyenv pyenv
-
    function load_pyenv() {
       eval "$(pyenv init - zsh)"
       if (( $+commands[pyenv-virtualenv-init] )); then
          eval "$(pyenv virtualenv-init - zsh)"
       fi
    }
+
+   # We don't want to lazy load this, because of features around shell
+   load_pyenv
 
    alias pes='pyenv shell'
    alias pea='pyenv activate'
